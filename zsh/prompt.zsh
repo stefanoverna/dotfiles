@@ -59,7 +59,7 @@ todo(){
     let todos=num-2
     if [ $todos != 0 ]
     then
-      echo "$todos"
+      echo "⚑ $todos"
     else
       echo ""
     fi
@@ -68,13 +68,23 @@ todo(){
   fi
 }
 
+pomodoro(){
+  pomodoroFile=~/.current_pomodoro
+  if [[ -a $pomodoroFile ]]
+  then
+    echo "%{$fg[green]%}›%{$reset_color%}"
+  else
+    echo "%{$fg_bold[red]%}⚡%{$reset_color%}"
+  fi
+}
+
 directory_name(){
   echo "%{$fg_bold[blue]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n$(pomodoro) '
 set_prompt () {
-  export RPROMPT="%{$fg_bold[blue]%}$(todo)%{$reset_color%}"
+  export RPROMPT="%{$fg[blue]%}$(todo)%{$reset_color%}"
 }
 
 precmd() {
