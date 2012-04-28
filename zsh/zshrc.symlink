@@ -1,3 +1,5 @@
+setopt extendedglob
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
@@ -5,7 +7,7 @@ export ZSH=$HOME/.dotfiles
 export PROJECTS=~/dev
 
 # source every .zsh file in this rep
-for config_file ($ZSH/**/*.zsh) source $config_file
+for config_file ($ZSH/**/(^completion).zsh) source $config_file
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.

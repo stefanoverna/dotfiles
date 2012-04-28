@@ -1,13 +1,7 @@
 # Stolen from
 #   https://github.com/sstephenson/rbenv/blob/master/completions/rbenv.zsh
 
-if [[ ! -o interactive ]]; then
-    return
-fi
-
-compctl -K _rbenv rbenv
-
-_rbenv() {
+function _rbenv() {
   local word words completions
   read -cA words
   word="${words[2]}"
@@ -20,3 +14,18 @@ _rbenv() {
 
   reply=("${(ps:\n:)completions}")
 }
+
+compctl -K _rbenv rbenv
+
+
+function _rake() {
+  if [ -f Rakefile ]; then
+    recent=`last_modified .rake_tasks~ Rakefile **/*.rake`
+    if [[ $recent != '.rake_tasks~' ]]; then
+      rake --silent --tasks | cut -d " " -f 2 > .rake_tasks~
+    fi
+    compadd `cat .rake_tasks~`
+  fi
+}
+
+compdef _rake rake

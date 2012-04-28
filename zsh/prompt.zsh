@@ -52,7 +52,7 @@ rb_prompt(){
 # This keeps the number of todos always available the right hand side of my
 # command line. I filter it to only count those tagged as "+next", so it's more
 # of a motivation to clear out the list.
-todo(){
+todo_next(){
   if $(which todo.sh &> /dev/null)
   then
     num=$(echo $(todo.sh ls +next | wc -l))
@@ -85,11 +85,11 @@ directory_name(){
 
 export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n$(pomodoro) '
 set_prompt () {
-  export RPROMPT="%{$fg[blue]%}$(todo)%{$reset_color%}"
+  export RPROMPT="%{$fg[blue]%}$(todo_next)%{$reset_color%}"
 }
 
 precmd() {
   title "zsh" "%m" "%55<...<%~"
-  z --add "$(pwd -P)"
+  _z --add "$(pwd -P)"
   set_prompt
 }
