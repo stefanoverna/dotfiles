@@ -47,3 +47,8 @@ bindkey '^[[5C' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^[^N' newtab
 bindkey '^?' backward-delete-char
+# allows to glob-search like ssh*.com
+bindkey "\C-r" history-incremental-pattern-search-backward
+# up and down finds commands starting with the typed thingie
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
