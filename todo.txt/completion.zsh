@@ -38,6 +38,7 @@ function _t() {
       "help:display help"
       "list:displays all todo items containing TERM(s), sorted by priority."
       "listall:displays items including done ones containing TERM(s)"
+      "projectview:displays items including done ones containing TERM(s), divided per project"
       "listcon:list all contexts"
       "listfile:display all files in .todo directory"
       "listpri:displays all items prioritized at PRIORITY."
@@ -79,7 +80,7 @@ function _t() {
       nextstate=item
       ;;
 
-      (a|add|addm|list|ls|listall|lsa)
+      (a|add|addm|list|ls|listall|lsa|pv|projectview)
       nextstate=proj
       ;;
 
