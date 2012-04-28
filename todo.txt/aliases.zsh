@@ -1,9 +1,9 @@
 # todo.sh: https://github.com/ginatrapani/todo.txt-cli
 function t() {
   if [ $# -eq 0 ]; then
-    todo.sh ls
+    grc todo.sh pv
   else
-    todo.sh $*
+    grc todo.sh $*
   fi
 }
 

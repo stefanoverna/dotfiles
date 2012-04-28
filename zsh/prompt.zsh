@@ -69,12 +69,13 @@ todo(){
 }
 
 pomodoro(){
-  pomodoroFile=~/.current_pomodoro
-  if [[ -a $pomodoroFile ]]
-  then
-    echo "%{$fg[green]%}›%{$reset_color%}"
+  current_day_of_week=$(date +'%u')
+  (( time = `date +'%k'` * 60 + `date +'%M'` ))
+  pomodoro_file=~/.current_pomodoro
+  if [[ ! ( -a $pomodoro_file ) && ( $current_day_of_week -le 5 ) && ( $time -ge 540 ) && ( $time -le 1080) ]]; then
+    echo "\x1b[5m%{$fg_bold[red]%}⚡%{$reset_color%}\x1b[25m"
   else
-    echo "%{$fg_bold[red]%}⚡%{$reset_color%}"
+    echo "%{$fg[green]%}›%{$reset_color%}"
   fi
 }
 
