@@ -232,10 +232,10 @@ help()
 		      Displays all the lines in SRC file located in the todo.txt directory,
 		      sorted by priority with line  numbers.  If TERM specified, lists
 		      all lines that contain TERM(s) in SRC file.  Hides all tasks that
-		      contain TERM(s) preceded by a minus sign (i.e. -TERM).  
+		      contain TERM(s) preceded by a minus sign (i.e. -TERM).
 		      Without any arguments, the names of all text files in the todo.txt
 		      directory are listed.
-		
+
 		    listpri [PRIORITIES] [TERM...]
 		    lsp [PRIORITIES] [TERM...]
 		      Displays all tasks prioritized PRIORITIES.
@@ -243,7 +243,7 @@ help()
 		      If no PRIORITIES specified, lists all prioritized tasks.
 		      If TERM specified, lists only prioritized tasks that contain TERM(s).
 		      Hides all tasks that contain TERM(s) preceded by a minus sign
-		      (i.e. -TERM).  
+		      (i.e. -TERM).
 
 		    listproj
 		    lsprj
@@ -903,7 +903,7 @@ case $action in
         input=$*
     fi
 
-    # Set Internal Field Seperator as newline so we can 
+    # Set Internal Field Seperator as newline so we can
     # loop across multiple lines
     SAVEIFS=$IFS
     IFS=$'\n'
