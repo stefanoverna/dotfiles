@@ -1,7 +1,7 @@
 function t() {
   if [ $# -eq 0 ]; then
-    grc todo.sh pv
+    grc todo.sh -p pv
   else
-    grc todo.sh $*
+    grc todo.sh -p $*
   fi
 }
