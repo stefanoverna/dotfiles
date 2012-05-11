@@ -3,3 +3,8 @@
 .sass-cache
 root.dir
 .rake_tasks~
+development.sqlite3
+log/*.log
+tmp
+schema.rb
+public/system

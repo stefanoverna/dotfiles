@@ -76,8 +76,8 @@
   graft = !legit graft \"$@\"
 
 [user]
-  name = Stefano Verna
-  email = stefano.verna@welaika.com
+	name = Stefano Verna
+	email = stefano.verna@welaika.com
 
 [color]
   ui = auto
