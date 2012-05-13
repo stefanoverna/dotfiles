@@ -38,17 +38,37 @@ setopt HIST_REDUCE_BLANKS
 #   like: git comm-[tab]
 setopt complete_aliases
 
-zle -N newtab
+# ZLE is the ZSH's component which interact with the user. It receives all keyboard inputs.
+# All actions in the editor are performed by ‘widgets’. A widget’s job is simply to perform
+# some small action. The ZLE commands that key sequences in keymaps are bound to are in fact
+# widgets. Widgets can be user-defined or built in.
 
+# Protip: on a terminal use Ctrl+V and then a keystroke to know the bindkey to write here.
+
+# Avoid jumping over an entire /path/location, rather than to each word separated by a '/'
+export WORDCHARS='*?_[]~=&;!#$%^(){}'
+# Ctrl + Left
 bindkey '^[^[[D' backward-word
+# Ctrl + Right
 bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[^N' newtab
-bindkey '^?' backward-delete-char
+# Alt + Left
+bindkey '^[[1;9D' beginning-of-line
+# Alt + Right
+bindkey '^[[1;9C' end-of-line
+
 # allows to glob-search like ssh*.com
 bindkey "\C-r" history-incremental-pattern-search-backward
 # up and down finds commands starting with the typed thingie
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+
+# Canc deletes a char
+bindkey '^[[3~' delete-char
+# Backspace deletes the char backward
+bindkey '^?' backward-delete-char
+
+# Ctrl + B deletes backward word
+bindkey  '^B' backward-delete-word
+# Ctrl + W deletes word
+bindkey  '^W' delete-word
+
