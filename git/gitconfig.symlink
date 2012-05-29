@@ -28,7 +28,7 @@
   rmuntr = clean -fd
 
   # show all branches
-  branches = !legit branches
+  branches = branch -a
   # creates a branch
   newbr = checkout -b
   # checkout a branch
@@ -42,42 +42,9 @@
   # list aliases
   al = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
 
-  # == Git Legit (https://github.com/kennethreitz/legit)
-
-  # switch <branch>
-  # Switches to specified branch. Defaults to current branch. Automatically
-  # stashes and unstashes any changes.
-  switch = !legit switch \"$@\"
-
-  # sprout [<branch>] <new-branch> ("germogliare")
-  # Creates a new branch off of the specified branch. Swiches to it immediately.
-  sprout = !legit sprout \"$@\"
-
-  # unpublish <branch>
-  # Removes specified branch from the remote.
-  unpublish = !legit unpublish \"$@\"
-
-  # harvest [<branch>] <into-branch> ("raccolta")
-  # Auto-Merge/Rebase of specified branch changes into the second branch.
-  harvest = !legit harvest \"$@\"
-
-  # sync [<branch>]
-  # Syncronizes the given branch. Defaults to current branch. Stash, Fetch,
-  # Auto-Merge/Rebase, Push, and Unstash. You can only sync published branches.
-  sync = !legit sync \"$@\"
-
-  # publish <branch>
-  # Publishes specified branch to the remote.
-  publish = !legit publish \"$@\"
-
-  # graft <branch> <into-branch> ("trapiantare")
-  # Auto-Merge/Rebase of specified branch into the second branch. Immediately
-  # removes specified branch. You can only graft unpublished branches.
-  graft = !legit graft \"$@\"
-
 [user]
-	name = Stefano Verna
-	email = stefano.verna@welaika.com
+  name = Stefano Verna
+  email = stefano.verna@welaika.com
 
 [color]
   ui = auto
@@ -107,3 +74,6 @@
 
 [difftool]
   prompt = false
+
+[github]
+  user = stefanoverna
