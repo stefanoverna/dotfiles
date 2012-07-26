@@ -8,3 +8,4 @@ log/*.log
 tmp
 schema.rb
 public/system
+covers_downloaded
