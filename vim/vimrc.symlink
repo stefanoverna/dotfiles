@@ -107,8 +107,8 @@ au BufWritePre * :%s/\s\+$//e | :retab
 " provide some context when editing
 set scrolloff=3
 
-set backupdir=~/.vim/_backup    " where to put backup files.
-set directory=~/.vim/_temp      " where to put swap files.
+set backupdir=~/.dotfiles/vim/_backup    " where to put backup files.
+set directory=~/.dotfiles/vim/_temp      " where to put swap files.
 
 " makes work arrows in visual mode
 noremap <Up> <nop>
