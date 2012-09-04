@@ -15,7 +15,8 @@
   # infos
   fame = shortlog -s --
   l = log --graph --decorate --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset %C(yellow)<%an>%Creset'
-  s = status --short
+  s = diff --stat
+  ss = status --short
   d = difftool
   dc = diff --cached
 
