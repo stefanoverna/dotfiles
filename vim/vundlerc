@@ -33,6 +33,7 @@ Bundle 'stefanoverna/snipmate-snippets.git'
 Bundle 'garbas/vim-snipmate.git'
 
 " other
+Bundle 'kana/vim-fakeclip'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'mileszs/ack.vim.git'
 Bundle 'tpope/vim-commentary.git'
