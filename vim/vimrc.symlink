@@ -116,7 +116,7 @@ noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
 
-" == Ruby block ==
+" == Ruby blocks ==
 runtime macros/matchit.vim
 
 " == CtrlP ==

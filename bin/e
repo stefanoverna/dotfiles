@@ -14,9 +14,10 @@
 #   $ e /usr/local
 #   # => opens the specified directory in your editor
 
+TTY=`tty`
 if test "$1" == ""
 then
-  $($EDITOR .)
+  $($EDITOR . < $TTY > $TTY)
 else
-  $($EDITOR "$1")
+  $($EDITOR "$1" < $TTY > $TTY)
 fi

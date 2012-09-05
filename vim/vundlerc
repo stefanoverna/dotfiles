@@ -33,6 +33,10 @@ Bundle 'stefanoverna/snipmate-snippets.git'
 Bundle 'garbas/vim-snipmate.git'
 
 " other
+Bundle 'tsaleh/vim-matchit'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+
 Bundle 'kana/vim-fakeclip'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'mileszs/ack.vim.git'
@@ -59,3 +63,5 @@ if has_vundle == 0
     echo ""
     :BundleInstall
 endif
+
+filetype plugin indent on
