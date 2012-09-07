@@ -1,10 +1,5 @@
 function c(){
-  cd $PROJECTS/$1;
-}
-
-function v(){
-  cd $PROJECTS/$1;
-  vim .;
+  cd $PROJECTS/**/$1(od[1])
 }
 
 function h(){

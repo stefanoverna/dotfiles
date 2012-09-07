@@ -16,6 +16,7 @@ Bundle 'gmarik/vundle'
 
 " colors
 Bundle 'wgibbs/vim-irblack'
+Bundle 'mikewest/vimroom'
 
 " syntaxes
 Bundle 'vim-ruby/vim-ruby.git'
@@ -37,6 +38,7 @@ Bundle 'tsaleh/vim-matchit'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 
+Bundle 'bogado/file-line'
 Bundle 'kana/vim-fakeclip'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'mileszs/ack.vim.git'

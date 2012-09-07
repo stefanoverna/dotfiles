@@ -74,15 +74,15 @@ set smartcase
 " clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
 
-" Wrap text automatically setup
-function s:setupWrapping()
-  set wrap
-  set wrapmargin=2
-  set textwidth=72
-endfunction
+" function! DistractionFreeWriting()
+"   colorscheme morning
+"   set colorcolumn=9999
+"   set nonumber
+"   set laststatus=0
+"   VimroomToggle
+" endfunction
 
-" Make sure all mardown files have the correct filetype set and setup wrapping
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+" au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,textile} call DistractionFreeWriting()
 
 " Treat vundlerc as a vim file
 au BufRead,BufNewFile vundlerc set ft=vim
@@ -238,5 +238,8 @@ imap <F1> <C-o>:echo<CR>
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
 nmap <silent><unique> <Leader>i <Plug>IndentGuidesToggle
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=None
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=None
+
+" == Restart server with <leader>r
+nmap <leader>r :silent !touch tmp/restart.txt<CR> | redraw!
