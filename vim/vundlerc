@@ -19,13 +19,23 @@ Bundle 'wgibbs/vim-irblack'
 Bundle 'mikewest/vimroom'
 
 " syntaxes
-Bundle 'vim-ruby/vim-ruby.git'
 Bundle 'tpope/vim-haml.git'
 Bundle 'tpope/vim-markdown.git'
 Bundle 'kchmck/vim-coffee-script.git'
 Bundle 'bbommarito/vim-slim.git'
 Bundle 'othree/html5.vim.git'
 Bundle 'timcharper/textile.vim.git'
+Bundle 'pangloss/vim-javascript.git'
+
+" ruby stuff
+Bundle 'vim-ruby/vim-ruby.git'
+Bundle 'tpope/vim-rails.git'
+" ar & ir
+Bundle 'nelstrom/vim-textobj-rubyblock'
+" adding end after if, do, def and several other keywords
+Bundle 'tpope/vim-endwise.git'
+" ro & rJ
+Bundle 'AndrewRadev/splitjoin.vim.git'
 
 " snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils.git'
@@ -33,32 +43,26 @@ Bundle 'tomtom/tlib_vim.git'
 Bundle 'stefanoverna/snipmate-snippets.git'
 Bundle 'garbas/vim-snipmate.git'
 
-" other
-Bundle 'tsaleh/vim-matchit'
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-
+" other great
 Bundle 'bogado/file-line'
 Bundle 'kana/vim-fakeclip'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'mileszs/ack.vim.git'
 Bundle 'tpope/vim-commentary.git'
 Bundle 'austintaylor/vim-choosecolor.git'
-Bundle 'tpope/vim-endwise.git'
-Bundle 'pangloss/vim-javascript.git'
 Bundle 'tsaleh/vim-align.git'
 Bundle 'sickill/vim-pasta.git'
-Bundle 'kana/vim-textobj-user.git'
-Bundle 'tpope/vim-rails.git'
 Bundle 'kien/ctrlp.vim.git'
 Bundle 'tpope/vim-eunuch.git'
 Bundle 'ervandew/supertab.git'
-Bundle 'AndrewRadev/splitjoin.vim.git'
 Bundle 'scrooloose/nerdtree.git'
-Bundle 'mattn/zencoding-vim.git'
 Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'nathanaelkane/vim-indent-guides.git'
+
+" rubyblock dependencies
+Bundle 'tsaleh/vim-matchit'
+Bundle 'kana/vim-textobj-user'
 
 if has_vundle == 0
     echo "Installing Bundles, please ignore key map error messages"

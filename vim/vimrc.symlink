@@ -201,8 +201,8 @@ endfunction
 map <leader>n :call RenameFile()<cr>
 
 " == splitjoin.vim
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
+nmap ro :SplitjoinSplit<cr>
+nmap rJ :SplitjoinJoin<cr>
 
 " == Close VIM if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -241,5 +241,10 @@ nmap <silent><unique> <Leader>i <Plug>IndentGuidesToggle
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=None
 
-" == Restart server with <leader>r
-nmap <leader>r :silent !touch tmp/restart.txt<CR> | redraw!
+function! RestartServer()
+  exec ':silent !mkdir -p tmp'
+  exec ':silent !touch tmp/restart.txt'
+  redraw!
+endfunction
+
+map <leader>r :call RestartServer()<cr>
