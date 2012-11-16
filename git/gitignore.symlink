@@ -9,3 +9,6 @@ tmp
 schema.rb
 public/system
 covers_downloaded
+.powder
+.rvmrc
+database.yml

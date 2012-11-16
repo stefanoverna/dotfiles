@@ -109,6 +109,7 @@ set scrolloff=3
 
 set backupdir=~/.dotfiles/vim/_backup    " where to put backup files.
 set directory=~/.dotfiles/vim/_temp      " where to put swap files.
+set backupskip=/tmp/*,/private/tmp/*
 
 " makes work arrows in visual mode
 noremap <Up> <nop>
@@ -140,6 +141,12 @@ map <leader>r :Gqfopen<CR>:ccl<CR>
 " Open routes.rb
 map <leader>gr :topleft :split config/routes.rb<cr>
 
+" Open database.yml
+map <leader>gd :topleft :split config/database.yml<cr>
+
+" Open schema.rb
+map <leader>gs :topleft :split db/schema.rb<cr>
+
 " Open Gemfile
 map <leader>gg :topleft 100 :split Gemfile<cr>
 
@@ -149,15 +156,6 @@ command! W :w
 " Can't be bothered to understand the difference between ESC and <c-c> in
 " insert mode
 imap <c-c> <esc>
-
-" == Split windows ==
-set winwidth=84
-" We have to have a winheight bigger than we want to set winminheight. But if
-" we set winheight to be huge before winminheight, the winminheight set will
-" fail.
-set winheight=5
-set winminheight=5
-set winheight=999
 
 " == ChooseColor ==
 map <leader>c :ChooseColor<CR>
@@ -171,7 +169,7 @@ imap <leader>c <Esc>:ChooseColor<CR>
 inoremap jj <Esc>
 
 " == Paste from clipboard ==
-vmap <leader>y "*y
+set clipboard=unnamed " this needs vim 7.3 with +clipboard
 nmap <leader>p :set paste<CR>"*p:set nopaste<CR>
 
 " == Current line highlighter ==
@@ -248,3 +246,10 @@ function! RestartServer()
 endfunction
 
 map <leader>r :call RestartServer()<cr>
+
+" quick save!
+nmap s :w<CR>
+
+" + and - increment and decrement numbers
+:nnoremap + <C-a>
+:nnoremap - <C-x>

@@ -15,6 +15,7 @@
   # infos
   fame = shortlog -s --
   l = log --graph --decorate --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset %C(yellow)<%an>%Creset'
+  ll = --oneline --decorate --stat --graph
   s = diff --stat
   ss = status --short
   d = difftool
@@ -39,6 +40,11 @@
 
   # rebase commits, interactive mode
   rb = rebase --interactive
+
+  # ignore tracked file
+  ig = update-index --assume-unchanged
+  # stop ignoring tracked file
+  noig = update-index --no-assume-unchanged
 
   # list aliases
   al = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'

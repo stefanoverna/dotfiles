@@ -30,6 +30,7 @@ Bundle 'pangloss/vim-javascript.git'
 " ruby stuff
 Bundle 'vim-ruby/vim-ruby.git'
 Bundle 'tpope/vim-rails.git'
+Bundle 'welaika/vim-itermux.git'
 " ar & ir
 Bundle 'nelstrom/vim-textobj-rubyblock'
 " adding end after if, do, def and several other keywords
@@ -44,8 +45,9 @@ Bundle 'stefanoverna/snipmate-snippets.git'
 Bundle 'garbas/vim-snipmate.git'
 
 " other great
+Bundle 'spolu/dwm.vim.git'
 Bundle 'bogado/file-line'
-Bundle 'kana/vim-fakeclip'
+" Bundle 'kana/vim-fakeclip'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'mileszs/ack.vim.git'
 Bundle 'tpope/vim-commentary.git'
