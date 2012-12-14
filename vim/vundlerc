@@ -18,6 +18,9 @@ Bundle 'gmarik/vundle'
 Bundle 'wgibbs/vim-irblack'
 Bundle 'mikewest/vimroom'
 
+" session manager
+Bundle 'cespare/vim-session.git'
+
 " syntaxes
 Bundle 'tpope/vim-haml.git'
 Bundle 'tpope/vim-markdown.git'
@@ -31,6 +34,8 @@ Bundle 'pangloss/vim-javascript.git'
 Bundle 'vim-ruby/vim-ruby.git'
 Bundle 'tpope/vim-rails.git'
 Bundle 'welaika/vim-itermux.git'
+" A vim plugin to convert key styles of ruby hashes
+Bundle 'rorymckinley/vim-rubyhash.git'
 " ar & ir
 Bundle 'nelstrom/vim-textobj-rubyblock'
 " adding end after if, do, def and several other keywords

@@ -102,7 +102,7 @@ au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= l
   \| exe "normal! g`\"" | endif
 
 " Automatically remove trailing spaces on some files (and fix tabs)
-au BufWritePre * :%s/\s\+$//e | :retab
+au BufWritePre *.rb,*.css,*.sass,*.scss,*.coffee :%s/\s\+$//e | :retab
 
 " provide some context when editing
 set scrolloff=3
@@ -253,3 +253,8 @@ nmap s :w<CR>
 " + and - increment and decrement numbers
 :nnoremap + <C-a>
 :nnoremap - <C-x>
+
+" sessions
+let g:session_directory = "."
+let g:session_autoload = 'yes'
+let g:session_autosave = 'yes'

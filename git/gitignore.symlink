@@ -12,3 +12,5 @@ covers_downloaded
 .powder
 .rvmrc
 database.yml
+settings.yml
+.session.vim

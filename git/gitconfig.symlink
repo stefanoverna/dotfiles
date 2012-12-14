@@ -2,6 +2,9 @@
   # unstage
   unstage = reset HEAD
 
+  # pull with rebase on top
+  p = pull --rebase
+
   # commit
   ci = commit
   c = commit
