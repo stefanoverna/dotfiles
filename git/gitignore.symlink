@@ -13,4 +13,4 @@ covers_downloaded
 .rvmrc
 database.yml
 settings.yml
-.session.vim
+default.vim

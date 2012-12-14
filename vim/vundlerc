@@ -19,7 +19,7 @@ Bundle 'wgibbs/vim-irblack'
 Bundle 'mikewest/vimroom'
 
 " session manager
-Bundle 'cespare/vim-session.git'
+Bundle 'xolox/vim-session.git'
 
 " syntaxes
 Bundle 'tpope/vim-haml.git'

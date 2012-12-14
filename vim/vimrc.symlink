@@ -258,3 +258,4 @@ nmap s :w<CR>
 let g:session_directory = "."
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
+set sessionoptions-=buffers
