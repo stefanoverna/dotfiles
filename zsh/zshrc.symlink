@@ -6,6 +6,10 @@ export ZSH=$HOME/.dotfiles
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/code
 
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+source $ZSH/zsh/zsh-syntax-highlighting.zsh
+source $ZSH/zsh/zsh-history-substring-search.zsh
+
 # source every .zsh file in this rep
 for config_file ($ZSH/**/(^completion).zsh) source $config_file
 

@@ -14,3 +14,4 @@ covers_downloaded
 database.yml
 settings.yml
 default.vim
+default.vim.lock

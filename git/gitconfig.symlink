@@ -6,6 +6,7 @@
   p = pull --rebase
 
   # commit
+  co = checkout
   ci = commit
   c = commit
 
@@ -18,7 +19,7 @@
   # infos
   fame = shortlog -s --
   l = log --graph --decorate --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset %C(yellow)<%an>%Creset'
-  ll = --oneline --decorate --stat --graph
+  ll = log --oneline --decorate --stat --graph
   s = diff --stat
   ss = status --short
   d = difftool

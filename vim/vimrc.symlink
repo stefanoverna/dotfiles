@@ -74,16 +74,6 @@ set smartcase
 " clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
 
-" function! DistractionFreeWriting()
-"   colorscheme morning
-"   set colorcolumn=9999
-"   set nonumber
-"   set laststatus=0
-"   VimroomToggle
-" endfunction
-
-" au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,textile} call DistractionFreeWriting()
-
 " Treat vundlerc as a vim file
 au BufRead,BufNewFile vundlerc set ft=vim
 
@@ -165,9 +155,6 @@ imap <leader>c <Esc>:ChooseColor<CR>
 :set colorcolumn=80
 :highlight ColorColumn ctermbg=black
 
-" == Map jj to Esc ==
-inoremap jj <Esc>
-
 " == Paste from clipboard ==
 set clipboard=unnamed " this needs vim 7.3 with +clipboard
 nmap <leader>p :set paste<CR>"*p:set nopaste<CR>
@@ -204,7 +191,19 @@ nmap rJ :SplitjoinJoin<cr>
 
 " == Close VIM if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-map <leader>d :NERDTreeToggle<cr>
+
+function! CustomNERDTreeToggle()
+  if !exists("t:NERDTreeBufName") || bufwinnr(t:NERDTreeBufName) == -1
+    if strlen(expand("%:p")) > 0
+      exec ':NERDTreeFind'
+    else
+      exec ':NERDTree'
+    end
+  else
+    exec ':NERDTreeClose'
+  endif
+endfunction
+map <leader>d :call CustomNERDTreeToggle()<cr>
 
 " == Mouse support
 " Send more characters for redraws
@@ -259,3 +258,14 @@ let g:session_directory = "."
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 set sessionoptions-=buffers
+
+" no backup files
+set nobackup
+set nowritebackup
+set noswapfile
+
+
+" Let's make escape better, together.
+inoremap jj <Esc>
+" Disable Escape while learning new binding.
+inoremap <Esc> <nop>
