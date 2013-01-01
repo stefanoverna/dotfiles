@@ -17,7 +17,7 @@
 TTY=`tty`
 if test "$1" == ""
 then
-  $($EDITOR . < $TTY > $TTY)
+  $($EDITOR < $TTY > $TTY)
 else
   $($EDITOR "$1" < $TTY > $TTY)
 fi

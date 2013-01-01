@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case "$1" in
+  --help)
+    pg_ctl $@
+    ;;
+  start | restart)
+    pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log $@
+    ;;
+  *)
+    pg_ctl -D /usr/local/var/postgres $@
+esac
