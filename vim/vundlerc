@@ -40,8 +40,6 @@ Bundle 'rorymckinley/vim-rubyhash.git'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 " adding end after if, do, def and several other keywords
 Bundle 'tpope/vim-endwise.git'
-" ro & rJ
-Bundle 'AndrewRadev/splitjoin.vim.git'
 
 " snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils.git'

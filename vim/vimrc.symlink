@@ -125,9 +125,6 @@ nnoremap <leader><leader> <c-^>
 " leader-f for Ack
 map <leader>f :Ack<space>
 
-" leader-r for greplace
-map <leader>r :Gqfopen<CR>:ccl<CR>
-
 " Open routes.rb
 map <leader>gr :topleft :split config/routes.rb<cr>
 
@@ -138,10 +135,7 @@ map <leader>gd :topleft :split config/database.yml<cr>
 map <leader>gs :topleft :split db/schema.rb<cr>
 
 " Open Gemfile
-map <leader>gg :topleft 100 :split Gemfile<cr>
-
-" Seriously, guys. It's not like :W is bound to anything anyway.
-command! W :w
+map <leader>gg :topleft :split Gemfile<cr>
 
 " Can't be bothered to understand the difference between ESC and <c-c> in
 " insert mode
@@ -152,12 +146,11 @@ map <leader>c :ChooseColor<CR>
 imap <leader>c <Esc>:ChooseColor<CR>
 
 " == Vertical line at 80 chars ==
-:set colorcolumn=80
-:highlight ColorColumn ctermbg=black
+set colorcolumn=80
+highlight ColorColumn ctermbg=black
 
 " == Paste from clipboard ==
 set clipboard=unnamed " this needs vim 7.3 with +clipboard
-nmap <leader>p :set paste<CR>"*p:set nopaste<CR>
 
 " == Current line highlighter ==
 au WinLeave * set nocursorline nocursorcolumn
@@ -185,10 +178,6 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-" == splitjoin.vim
-nmap ro :SplitjoinSplit<cr>
-nmap rJ :SplitjoinJoin<cr>
-
 " == Close VIM if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
@@ -204,6 +193,7 @@ function! CustomNERDTreeToggle()
   endif
 endfunction
 map <leader>d :call CustomNERDTreeToggle()<cr>
+let NERDTreeHijackNetrw=1
 
 " == Mouse support
 " Send more characters for redraws
@@ -214,17 +204,9 @@ set mouse=a
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 set ttymouse=xterm2
 
-" == Zencoding HTML: map ,z to expand (ie. html>body>header+ul>li*3)
-let g:user_zen_expandabbr_key = '<leader>z'
-let g:user_zen_next_key = '<leader>x'
-
 " == Status bar, replaced with Powerline
 " Always show the status bar
-" set laststatus=2
-" set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %{fugitive#statusline()}
-" Change background color of status line based on mode
-" au InsertEnter * hi StatusLine term=reverse ctermbg=darkred gui=undercurl guisp=Magenta
-" au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=darkblue gui=bold,reverse
+set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
 " == Disable F1 opening help
@@ -248,7 +230,7 @@ map <leader>r :call RestartServer()<cr>
 
 " quick save and quit!
 nmap s :w<CR>
-nmap q :qa<CR>
+nmap q :q<CR>
 
 " + and - increment and decrement numbers
 :nnoremap + <C-a>
