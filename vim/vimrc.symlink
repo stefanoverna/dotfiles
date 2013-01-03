@@ -246,8 +246,9 @@ endfunction
 
 map <leader>r :call RestartServer()<cr>
 
-" quick save!
+" quick save and quit!
 nmap s :w<CR>
+nmap q :qa<CR>
 
 " + and - increment and decrement numbers
 :nnoremap + <C-a>
@@ -264,8 +265,11 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-
 " Let's make escape better, together.
-inoremap jj <Esc>
-" Disable Escape while learning new binding.
-inoremap <Esc> <nop>
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+" cursor is an underscore in insert mode
+let &t_SI .= "\<Esc>[6 q"
+" else cursor is a block
+let &t_EI .= "\<Esc>[2 q"

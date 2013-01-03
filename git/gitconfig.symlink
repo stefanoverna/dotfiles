@@ -88,3 +88,5 @@
 
 [github]
   user = stefanoverna
+[push]
+	default = simple

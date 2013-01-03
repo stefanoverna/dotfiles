@@ -64,10 +64,3 @@ function remove_submodule() {
   fi
 }
 
-function git() {
-  if [[ $argv[1] == 'submodule' && $argv[2] == 'rm' ]]; then
-    remove_submodule $argv[3,-1]
-  else
-    command git "$@";
-  fi;
-}
