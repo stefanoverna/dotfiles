@@ -247,6 +247,12 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" Move cursor by display lines when wrapping
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
 " Let's make escape better, together.
 inoremap jk <Esc>
 inoremap kj <Esc>

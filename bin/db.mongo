@@ -1,0 +1,17 @@
+#!/bin/sh
+
+MONGOPID=`ps -ef | grep 'mongod' | grep -v grep | awk '{print $2}'`
+
+case "$1" in
+  start)
+    mongod --fork --config /usr/local/etc/mongod.conf
+    ;;
+  stop)
+    if [ ! -z "$MONGOPID" ]; then
+      kill -15 $MONGOPID
+    fi
+    ;;
+  *)
+    mongod $@
+esac
+

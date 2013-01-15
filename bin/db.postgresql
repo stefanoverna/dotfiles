@@ -7,6 +7,9 @@ case "$1" in
   start | restart)
     pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log $@
     ;;
+  stop)
+    pg_ctl -D /usr/local/var/postgres -m fast $@
+    ;;
   *)
     pg_ctl -D /usr/local/var/postgres $@
 esac
