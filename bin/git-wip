@@ -1,0 +1,3 @@
+#!/bin/sh
+git aa
+git commit -m "wip"

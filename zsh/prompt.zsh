@@ -6,6 +6,15 @@ git_branch() {
   echo $(git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
 }
 
+git_wip() {
+  if [[ `git log --format="%s" -1 | tr '[:upper:]' '[:lower:]'` == "wip" ]]
+  then
+    echo "— %{$fg_bold[magenta]%}WIP!%{$reset_color%}"
+  else
+    echo ""
+  fi
+}
+
 git_dirty() {
   st=$(git status 2>/dev/null | tail -n 1)
   if [[ $st == "" ]]
@@ -36,7 +45,7 @@ need_push () {
   then
     echo " "
   else
-    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
+    echo " with %{$fg_bold[blue]%}unpushed%{$reset_color%} "
   fi
 }
 
@@ -44,25 +53,6 @@ rb_prompt(){
   if $(which rbenv &> /dev/null)
   then
     echo "%{$fg_bold[green]%}$(rbenv version | awk '{print $1}')%{$reset_color%}"
-  else
-    echo ""
-  fi
-}
-
-# This keeps the number of todos always available the right hand side of my
-# command line. I filter it to only count those tagged as "+next", so it's more
-# of a motivation to clear out the list.
-todo_next(){
-  if $(which todo.sh &> /dev/null)
-  then
-    num=$(echo $(todo.sh ls +next | wc -l))
-    let todos=num-2
-    if [ $todos != 0 ]
-    then
-      echo "⚑ $todos"
-    else
-      echo ""
-    fi
   else
     echo ""
   fi
@@ -83,9 +73,9 @@ directory_name(){
   echo "%{$fg_bold[blue]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n$(pomodoro) '
+export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)$(git_wip)\n$(pomodoro) '
 set_prompt () {
-  export RPROMPT="%{$fg[blue]%}$(todo_next)%{$reset_color%}"
+  export RPROMPT=""
 }
 
 precmd() {
