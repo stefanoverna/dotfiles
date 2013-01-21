@@ -126,16 +126,16 @@ nnoremap <leader><leader> <c-^>
 map <leader>f :Ack<space>
 
 " Open routes.rb
-map <leader>gr :topleft :split config/routes.rb<cr>
+map <leader>gr :topleft :60split config/routes.rb<cr>
 
 " Open database.yml
-map <leader>gd :topleft :split config/database.yml<cr>
+map <leader>gd :topleft :60split config/database.yml<cr>
 
 " Open schema.rb
-map <leader>gs :topleft :split db/schema.rb<cr>
+map <leader>gs :topleft :60split db/schema.rb<cr>
 
 " Open Gemfile
-map <leader>gg :topleft :split Gemfile<cr>
+map <leader>gg :topleft :60split Gemfile<cr>
 
 " Can't be bothered to understand the difference between ESC and <c-c> in
 " insert mode
@@ -230,6 +230,9 @@ map <leader>r :call RestartServer()<cr>
 
 " quick save and quit!
 nmap s :w<CR>
+
+" q closes buffer, Q records macros
+nnoremap Q q
 nmap q :q<CR>
 
 " + and - increment and decrement numbers
@@ -261,3 +264,5 @@ inoremap kj <Esc>
 let &t_SI .= "\<Esc>[6 q"
 " else cursor is a block
 let &t_EI .= "\<Esc>[2 q"
+
+map <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>

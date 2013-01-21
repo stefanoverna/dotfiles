@@ -7,7 +7,7 @@ git_branch() {
 }
 
 git_wip() {
-  if [[ `git log --format="%s" -1 | tr '[:upper:]' '[:lower:]'` == "wip" ]]
+  if [[ `git log --format="%s" -1 2>/dev/null | tr '[:upper:]' '[:lower:]'` == "wip" ]]
   then
     echo "— %{$fg_bold[magenta]%}WIP!%{$reset_color%}"
   else
@@ -49,10 +49,20 @@ need_push () {
   fi
 }
 
+rb_gemset() {
+  gemset=`rbenv gemset active 2&>/dev/null | head -n1`
+  if [ -z "$gemset" ]
+  then
+    echo ""
+  else
+    echo " ($gemset)"
+  fi
+}
+
 rb_prompt(){
   if $(which rbenv &> /dev/null)
   then
-    echo "%{$fg_bold[green]%}$(rbenv version | awk '{print $1}')%{$reset_color%}"
+    echo "%{$fg_bold[green]%}$(rbenv version | awk '{print $1}')$(rb_gemset)%{$reset_color%}"
   else
     echo ""
   fi
