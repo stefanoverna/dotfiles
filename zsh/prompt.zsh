@@ -1,70 +1,52 @@
 autoload colors && colors
-# cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
-
-git_branch() {
-  echo $(git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
-}
 
 git_wip() {
-  if [[ `git log --format="%s" -1 2>/dev/null | tr '[:upper:]' '[:lower:]'` == "wip" ]]
-  then
+  st=$(git log --format="%s" -1 | tr '[:upper:]' '[:lower:]')
+  if [[ $st == "wip" ]]; then
     echo "— %{$fg_bold[magenta]%}WIP!%{$reset_color%}"
   else
     echo ""
   fi
 }
 
-git_dirty() {
-  st=$(git status 2>/dev/null | tail -n 1)
-  if [[ $st == "" ]]
-  then
-    echo ""
+git_branch() {
+  ref=$(git symbolic-ref HEAD)
+  branch="${ref#refs/heads/}"
+  st=$(git diff --quiet && git diff --cached --quiet && test -z "$(git ls-files --others)")
+  if test "$?" = 0; then
+    echo "%{$fg_bold[green]%}$branch%{$reset_color%}"
   else
-    if [[ $st == "nothing to commit, working directory clean" ]]
-    then
-      echo "on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
-    else
-      echo "on %{$fg_bold[red]%}$(git_prompt_info)!%{$reset_color%}"
-    fi
+    echo "%{$fg_bold[red]%}$branch!%{$reset_color%}"
   fi
 }
 
-git_prompt_info () {
- ref=$(git symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo "${ref#refs/heads/}"
-}
-
-unpushed () {
-  git cherry -v @{upstream} 2>/dev/null
-}
-
-need_push () {
-  if [[ $(unpushed) == "" ]]
-  then
+git_need_push () {
+  st=$(git cherry -v @{upstream})
+  if [[ $st == "" ]]; then
     echo " "
   else
     echo " with %{$fg_bold[blue]%}unpushed%{$reset_color%} "
   fi
 }
 
-rb_gemset() {
-  gemset=`rbenv gemset active 2&>/dev/null | head -n1`
-  if [ -z "$gemset" ]
-  then
-    echo ""
-  else
-    echo " ($gemset)"
+is_git_repo() {
+  [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1
+}
+
+git_infos() {
+  if is_git_repo; then
+    echo "on $(git_branch)$(git_need_push)$(git_wip)"
   fi
 }
 
-rb_prompt(){
-  if $(which rbenv &> /dev/null)
-  then
-    echo "%{$fg_bold[green]%}$(rbenv version | awk '{print $1}')$(rb_gemset)%{$reset_color%}"
-  else
-    echo ""
+rbenv_infos() {
+  if $(which rbenv &> /dev/null); then
+    version=$(rbenv version | awk '{print $1}')
+    gemset=$(rbenv gemset active 2&>/dev/null | head -n1)
+    if [[ "$gemset" != "" ]]; then
+      gemset="%{$fg_bold[yellow]%} ($gemset)%{$reset_color%}"
+    fi
+    echo "%{$fg_bold[green]%}$version$gemset%{$reset_color%}"
   fi
 }
 
@@ -83,7 +65,7 @@ directory_name(){
   echo "%{$fg_bold[blue]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)$(git_wip)\n$(pomodoro) '
+export PROMPT=$'\n$(rbenv_infos) in $(directory_name) $(git_infos)\n$(pomodoro) '
 set_prompt () {
   export RPROMPT=""
 }

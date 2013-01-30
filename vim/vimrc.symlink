@@ -145,9 +145,11 @@ imap <c-c> <esc>
 map <leader>c :ChooseColor<CR>
 imap <leader>c <Esc>:ChooseColor<CR>
 
-" == Vertical line at 80 chars ==
-set colorcolumn=80
-highlight ColorColumn ctermbg=black
+if exists("&colorcolumn")
+  " == Vertical line at 80 chars ==
+  set colorcolumn=80
+  highlight ColorColumn ctermbg=black
+endif
 
 " == Paste from clipboard ==
 set clipboard=unnamed " this needs vim 7.3 with +clipboard
@@ -266,3 +268,4 @@ let &t_SI .= "\<Esc>[6 q"
 let &t_EI .= "\<Esc>[2 q"
 
 map <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
+map <leader>ss :%s/\s\+$//e<CR><C-o>
