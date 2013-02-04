@@ -21,11 +21,14 @@ git_branch() {
 }
 
 git_need_push () {
-  st=$(git cherry -v @{upstream})
-  if [[ $st == "" ]]; then
-    echo " "
-  else
-    echo " with %{$fg_bold[blue]%}unpushed%{$reset_color%} "
+  has_upstream=$(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD))
+  if [ -n "$has_upstream" ]; then
+    st=$(git cherry -v @{upstream})
+    if [[ $st == "" ]]; then
+      echo " "
+    else
+      echo " with %{$fg_bold[blue]%}unpushed%{$reset_color%} "
+    fi
   fi
 }
 
