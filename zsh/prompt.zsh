@@ -12,7 +12,7 @@ git_wip() {
 git_branch() {
   ref=$(git symbolic-ref HEAD)
   branch="${ref#refs/heads/}"
-  st=$(git diff --quiet && git diff --cached --quiet && test -z "$(git ls-files --others)")
+  st=$(git diff --quiet && git diff --cached --quiet && test -z "$(git ls-files --others --exclude-standard)")
   if test "$?" = 0; then
     echo "%{$fg_bold[green]%}$branch%{$reset_color%}"
   else
