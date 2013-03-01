@@ -49,18 +49,11 @@ set expandtab
 set list
 " backspace through everything in insert mode
 set backspace=indent,eol,start    " List chars
-" Reset the listchars
-set listchars=""
-" A tab should display as "  ", trailing whitespace as "·"
-set listchars=tab:\ \
- " Show trailing spaces as dots
-set listchars+=trail:·
-" The character to show in the last column when wrap is
-" off and the line continues beyond the right of the screen
-set listchars+=extends:>
-" The character to show in the last column when wrap is
-" off and the line continues beyond the right of the screen
-set listchars+=precedes:<
+
+" A tab should display as "▸", trailing whitespace as "·"
+" precedes and extends are the characters to show when wrap 
+" is off and the line continues beyond the right of the screen
+set listchars=trail:·,precedes:«,extends:»,tab:▸\ 
 
 " == Searching ==
 " Highlight matches
@@ -141,9 +134,19 @@ map <leader>gg :topleft :60split Gemfile<cr>
 " insert mode
 imap <c-c> <esc>
 
-" == ChooseColor ==
-map <leader>c :ChooseColor<CR>
-imap <leader>c <Esc>:ChooseColor<CR>
+" == colorpick ==
+" Needs https://github.com/jnordberg/color-pick
+function! s:color_pick()
+  let word = expand("<cword>")
+  let hex = system('colorpick -startColor ' . word)
+  if word =~ '\([a-fA-F1-9]\{3,6\}\)'
+    exe "normal ciw" . hex
+  else
+    exe "normal a#" . hex
+  endif
+endfunction
+command! ColorPick :call s:color_pick()
+map <leader>c :ColorPick<CR>
 
 if exists("&colorcolumn")
   " == Vertical line at 80 chars ==
