@@ -44,6 +44,7 @@
 
   # rebase commits, interactive mode
   rb = rebase --interactive
+  squash = rebase --interactive
 
   # ignore tracked file
   ig = update-index --assume-unchanged

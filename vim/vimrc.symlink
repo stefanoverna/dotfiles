@@ -269,3 +269,14 @@ let &t_EI .= "\<Esc>[2 q"
 
 map <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
 map <leader>ss :%s/\s\+$//e<CR><C-o>
+
+" move the lines up and down with ctrl+shift+arrows
+vnoremap <c-s-k> :m-2<CR>gv=gv
+vnoremap <c-s-j> :m'>+<CR>gv=gv
+
+" split
+nnoremap <leader>v :execute "vsplit " . bufname("#")<CR>
+nnoremap <leader>x :execute "split " . bufname("#")<CR>
+
+" y u no consistent?
+nnoremap Y y$
