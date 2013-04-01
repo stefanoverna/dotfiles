@@ -27,11 +27,13 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'slim-template/vim-slim'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
+Bundle 'wavded/vim-stylus'
+Bundle 'digitaltoad/vim-jade'
 
 " ruby stuff
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
-Bundle 'welaika/vim-itermux'
+Bundle 'stefanoverna/vim-plumber'
 " ar & ir
 Bundle 'nelstrom/vim-textobj-rubyblock'
 " adding end after if, do, def and several other keywords

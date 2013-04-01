@@ -25,7 +25,7 @@
 --type-set=json=.json
 
 # type add
---type-add=ruby=.rake,Rakefile,Capfile,Gemfile
+--type-add=ruby=.rake,Rakefile,Capfile,Gemfile,.erb,.slim,.haml
 --type-add=html=.erb,.slim,.haml
 --type-add=js=.coffee,.json
 --type-add=css=.scss,.sass
@@ -37,4 +37,4 @@
 --ignore-dir=coverage
 --ignore-dir=public/system
 --ignore-dir=.bin
-
+--ignore-dir=node_modules

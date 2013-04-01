@@ -1,0 +1,28 @@
+#!/bin/bash
+
+DEFAULT_PIPE_NAME=".plumber"
+PIPE_NAME="${1:-$DEFAULT_PIPE_NAME}"
+
+if [ ! -p $PIPE_NAME ]; then
+  echo "Created pipe ${PIPE_NAME}..."
+  mkfifo $PIPE_NAME
+fi
+
+echo "Waiting for commands!"
+
+function hr {
+  printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' ${1:-}
+}
+
+while true; do
+  COMMAND=$(cat $PIPE_NAME)
+  clear
+  hr =
+  echo $COMMAND
+  hr -
+  sh -c "$COMMAND"
+  echo
+  hr =
+  echo
+done
+

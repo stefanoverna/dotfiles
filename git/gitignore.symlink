@@ -15,3 +15,4 @@ database.yml
 settings.yml
 default.vim
 default.vim.lock
+bin/stubs/*

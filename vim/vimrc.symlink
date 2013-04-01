@@ -65,7 +65,7 @@ set ignorecase
 " ...unless they contain at least one capital letter
 set smartcase
 " clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<cr>
+nnoremap <CR> :nohlsearch<cr>
 
 " Treat vundlerc as a vim file
 au BufRead,BufNewFile vundlerc set ft=vim
@@ -79,10 +79,12 @@ au BufRead,BufNewFile {Podfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} 
 " Movefile is Yaml
 au BufRead,BufNewFile {Movefile}    set ft=yaml
 
+" Cakefile is Yaml
+au BufRead,BufNewFile {Cakefile}    set ft=coffee
+
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
-au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-  \| exe "normal! g`\"" | endif
+au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Automatically remove trailing spaces on some files (and fix tabs)
 au BufWritePre *.rb,*.css,*.sass,*.scss,*.coffee :%s/\s\+$//e | :retab
@@ -105,7 +107,7 @@ runtime macros/matchit.vim
 
 " == CtrlP ==
 let g:ctrlp_map = '<leader>l'
-map <leader>. :CtrlPMRU<CR>
+noremap <leader>. :CtrlPMRU<CR>
 let g:ctrlp_match_window_reversed = 0
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,*/tmp/*
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
@@ -116,37 +118,36 @@ let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -
 nnoremap <leader><leader> <c-^>
 
 " leader-f for Ack
-map <leader>f :Ack<space>
+noremap <leader>f :Ack<space>
 
 " Open routes.rb
-map <leader>gr :topleft :60split config/routes.rb<cr>
+noremap <leader>gr :topleft :60split config/routes.rb<cr>
 
 " Open database.yml
-map <leader>gd :topleft :60split config/database.yml<cr>
+noremap <leader>gd :topleft :60split config/database.yml<cr>
 
 " Open schema.rb
-map <leader>gs :topleft :60split db/schema.rb<cr>
+noremap <leader>gs :topleft :60split db/schema.rb<cr>
 
 " Open Gemfile
-map <leader>gg :topleft :60split Gemfile<cr>
+noremap <leader>gg :topleft :60split Gemfile<cr>
 
 " Can't be bothered to understand the difference between ESC and <c-c> in
 " insert mode
-imap <c-c> <esc>
+inoremap <c-c> <esc>
 
 " == colorpick ==
 " Needs https://github.com/jnordberg/color-pick
-function! s:color_pick()
+function! ColorPick()
   let word = expand("<cword>")
   let hex = system('colorpick -startColor ' . word)
   if word =~ '\([a-fA-F1-9]\{3,6\}\)'
-    exe "normal ciw" . hex
+    execute "normal! ciw" . hex
   else
-    exe "normal a#" . hex
+    execute "normal! a#" . hex
   endif
 endfunction
-command! ColorPick :call s:color_pick()
-map <leader>c :ColorPick<CR>
+nnoremap <leader>c :call ColorPick()<CR>
 
 if exists("&colorcolumn")
   " == Vertical line at 80 chars ==
@@ -167,7 +168,7 @@ hi CursorLine cterm=NONE ctermbg=0
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " == Prefills :edit command with the current dir ==
-map <leader>e :edit %%
+noremap <leader>e :edit %%
 
 " == Rename the current file! ==
 function! RenameFile()
@@ -181,12 +182,12 @@ function! RenameFile()
         redraw!
     endif
 endfunction
-map <leader>n :call RenameFile()<cr>
+noremap <leader>n :call RenameFile()<cr>
 
 " == Close VIM if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-function! CustomNERDTreeToggle()
+function! CustomTreeToggle()
   if !exists("t:NERDTreeBufName") || bufwinnr(t:NERDTreeBufName) == -1
     if strlen(expand("%:p")) > 0
       exec ':NERDTreeFind'
@@ -197,7 +198,7 @@ function! CustomNERDTreeToggle()
     exec ':NERDTreeClose'
   endif
 endfunction
-map <leader>d :call CustomNERDTreeToggle()<cr>
+noremap <leader>d :call CustomTreeToggle()<cr>
 let NERDTreeHijackNetrw=1
 
 " == Mouse support
@@ -215,13 +216,13 @@ set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
 " == Disable F1 opening help
-nmap <F1> :echo<CR>
-imap <F1> <C-o>:echo<CR>
+nnoremap <F1> :echo<CR>
+inoremap <F1> <C-o>:echo<CR>
 
 " == Indent Guides
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
-nmap <silent><unique> <Leader>i <Plug>IndentGuidesToggle
+nnoremap <silent><unique> <Leader>i <Plug>IndentGuidesToggle
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=None
 
@@ -230,19 +231,18 @@ function! RestartServer()
   exec ':silent !touch tmp/restart.txt'
   redraw!
 endfunction
-
-map <leader>r :call RestartServer()<cr>
+noremap <leader>r :call RestartServer()<cr>
 
 " quick save and quit!
-nmap s :w<CR>
+nnoremap s :w<CR>
 
 " q closes buffer, Q records macros
 nnoremap Q q
-nmap q :q<CR>
+nnoremap q :q<CR>
 
 " + and - increment and decrement numbers
-:nnoremap + <C-a>
-:nnoremap - <C-x>
+nnoremap + <C-a>
+nnoremap - <C-x>
 
 " sessions
 let g:session_directory = "."
@@ -270,8 +270,8 @@ let &t_SI .= "\<Esc>[6 q"
 " else cursor is a block
 let &t_EI .= "\<Esc>[2 q"
 
-map <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
-map <leader>ss :%s/\s\+$//e<CR><C-o>
+noremap <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
+noremap <leader>ss :%s/\s\+$//e<CR><C-o>
 
 " move the lines up and down with ctrl+shift+arrows
 vnoremap <c-s-k> :m-2<CR>gv=gv
@@ -283,3 +283,7 @@ nnoremap <leader>x :execute "split " . bufname("#")<CR>
 
 " y u no consistent?
 nnoremap Y y$
+
+let NERDTreeIgnore=['node_modules', 'stubs']
+
+nnoremap <silent> <leader>A :<C-U>w \| call SendToPipe("rspec spec")<CR>

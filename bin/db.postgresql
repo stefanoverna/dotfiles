@@ -4,6 +4,9 @@ case "$1" in
   --help)
     pg_ctl $@
     ;;
+  user)
+    createuser -d -R -P $@
+    ;;
   start | restart)
     pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log $@
     ;;
