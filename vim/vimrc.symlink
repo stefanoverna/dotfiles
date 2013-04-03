@@ -51,9 +51,9 @@ set list
 set backspace=indent,eol,start    " List chars
 
 " A tab should display as "▸", trailing whitespace as "·"
-" precedes and extends are the characters to show when wrap 
+" precedes and extends are the characters to show when wrap
 " is off and the line continues beyond the right of the screen
-set listchars=trail:·,precedes:«,extends:»,tab:▸\ 
+set listchars=trail:·,precedes:«,extends:»,tab:▸\
 
 " == Searching ==
 " Highlight matches
@@ -168,7 +168,7 @@ hi CursorLine cterm=NONE ctermbg=0
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " == Prefills :edit command with the current dir ==
-noremap <leader>e :edit %%
+map <leader>e :edit %%
 
 " == Rename the current file! ==
 function! RenameFile()
@@ -270,9 +270,6 @@ let &t_SI .= "\<Esc>[6 q"
 " else cursor is a block
 let &t_EI .= "\<Esc>[2 q"
 
-noremap <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
-noremap <leader>ss :%s/\s\+$//e<CR><C-o>
-
 " move the lines up and down with ctrl+shift+arrows
 vnoremap <c-s-k> :m-2<CR>gv=gv
 vnoremap <c-s-j> :m'>+<CR>gv=gv
@@ -286,4 +283,26 @@ nnoremap Y y$
 
 let NERDTreeIgnore=['node_modules', 'stubs']
 
-nnoremap <silent> <leader>A :<C-U>w \| call SendToPipe("rspec spec")<CR>
+" <leader>A runs all the specs
+nnoremap <silent> <leader>A :<C-U>w \| call Plumber("rspec spec")<CR>
+
+" Use the silver searcher
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Convert hashrockets into new 1.9 hash syntax
+noremap <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
+
+" Remove trailing spaces
+noremap <leader>ss :%s/\s\+$//e<CR><C-o>
+
+function! AddTrailingNewLine()
+  if match(getline("$"), "^\\s*$") ==# -1
+    $s/^\(.*\)$/\1\r/
+    exec "normal \<c-o>"
+  end
+endfunction
+
+" POSIX says a line is a sequence of zero or more non-newline characters plus
+" a terminating newline character
+autocmd BufWritePre * :call AddTrailingNewLine()
+
