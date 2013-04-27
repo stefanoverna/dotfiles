@@ -34,6 +34,7 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'stefanoverna/vim-plumber'
+Bundle 'stefanoverna/vim-i18n'
 " ar & ir
 Bundle 'nelstrom/vim-textobj-rubyblock'
 " adding end after if, do, def and several other keywords
@@ -46,18 +47,20 @@ Bundle 'stefanoverna/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
 
 " other great
-Bundle 'spolu/dwm.vim'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'bogado/file-line'
 Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-commentary'
 Bundle 'sickill/vim-pasta'
 Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-eunuch'
 Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'tpope/vim-surround'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'airblade/vim-gitgutter'
 
@@ -72,3 +75,4 @@ if has_vundle == 0
 endif
 
 filetype plugin indent on
+

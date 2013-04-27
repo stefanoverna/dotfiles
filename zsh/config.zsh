@@ -47,6 +47,9 @@ setopt complete_aliases
 
 # Protip: on a terminal use Ctrl+V and then a keystroke to know the bindkey to write here.
 
+# Use emacs-style zsh bindings
+bindkey -e
+
 # Avoid jumping over an entire /path/location, rather than to each word separated by a '/'
 export WORDCHARS='*?_[]~=&;!#$%^(){}'
 # Ctrl + Left

@@ -4,4 +4,3 @@
 # You can over ride these for particular projects by putting entries
 # into Capfile or deploy.rb for those projects
 
-require 'capistrano_colors'
