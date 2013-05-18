@@ -292,6 +292,8 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Convert hashrockets into new 1.9 hash syntax
 noremap <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
+" Remove space inside square brackets
+noremap <leader>zz :%s/\[\s\+\([^\]]\+\)\s\+\]/[\1]/ge<CR><C-o>
 
 " Remove trailing spaces
 noremap <leader>ss :%s/\s\+$//e<CR><C-o>

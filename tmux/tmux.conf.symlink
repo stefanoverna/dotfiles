@@ -1,11 +1,11 @@
-##### Basic Usage #####
+# Basic Usage
 
 # First things first:  Remap the prefix key to reduce conflicts with Emacs!
 unbind C-b
 
 # By default, we'll use Control-backslash as the prefix key.
 set -g prefix 'C-x' ;
-# bind 'C-x' send-prefix
+bind 'C-x' send-prefix
 
 # needed for pbcopy/vim's * register to work inside of tmux
 set-option -g default-command "reattach-to-user-namespace -l zsh"
@@ -23,17 +23,20 @@ set -sg escape-time 1
 # Extend the repeat interval for repeatable commands (e.g., resize-pane)
 set -sg repeat-time 1000
 
-bind-key -n C-k send-keys -R \; clear-history
+bind -n C-k send-keys -R \; clear-history \; display "Clean!"
 
-##### Fast pane cycling ####
+# Close other panels
+bind q kill-pane -a -t 0
 
-unbind C-x
-bind C-x select-pane -t :.+
+# Rate limiting
+set -sg c0-change-trigger 20
+set -sg c0-change-interval 250
 
-##### Copy and paste vim style #####
+# Copy and paste vim style
 
 unbind [
 bind Escape copy-mode
+bind b copy-mode
 unbind p
 bind p paste-buffer
 bind-key -t vi-copy 'v' begin-selection
@@ -41,30 +44,31 @@ bind-key -t vi-copy 'y' copy-selection
 bind-key -t vi-copy '{' halfpage-up
 bind-key -t vi-copy '}' halfpage-down
 bind-key -t vi-copy 'i' cancel
+bind-key -t vi-copy Escape cancel
 
-##### Zoom pane ####
+# Zoom pane
 
 bind + run "tmux-zoom.sh"
 
-##### Mouse Support #####
+# Mouse Support
 
 setw -g mode-mouse off
-# set -g mouse-resize-pane on
-# set -g mouse-select-pane on
-# set -g mouse-select-window on
+set -g mouse-resize-pane on
+set -g mouse-select-pane on
+set -g mouse-select-window on
 
-##### Scrollback Navigation #####
+# Scrollback Navigation
 
 # Use vi-style navigation in Copy mode (which is also scrollback mode)
 setw -g mode-keys vi
 
-##### Window/Pane Management #####
+# Window/Pane Management
 
 # Split windows more intuitively (except for the fact that tmux doesn't
 # understand that a horizontal split means the pane should be split down the
 # middle horizontally, and likewise for a vertical split).
-bind \ split-window -h # horizontal columns
-bind - split-window -v # vertical rows
+bind \ split-window -h
+bind - split-window -v
 
 # Navigate panes vim-style!
 bind h select-pane -L
@@ -88,7 +92,8 @@ bind -r L resize-pane -R 5
 # Renumber windows
 bind m command-prompt -p "move window to:"  "move-window -t '%%'"
 
-##### Colors #####
+# Colors
+
 # Ensure we're using 256 colors
 set -g default-terminal "screen-256color"
 
@@ -116,7 +121,7 @@ set -g message-attr bright
 set -g status-utf8 on
 set -g status-left-length 40
 set -g status-left "[#S:#I]"
-set -g status-right "#%d %b %R #[fg=green]#(wemux status_users)"
+set -g status-right "#%d %b %R"
 set -g status-justify centre
 set -g status-interval 15
 

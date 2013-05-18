@@ -40,6 +40,9 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 " adding end after if, do, def and several other keywords
 Bundle 'tpope/vim-endwise'
 
+" go
+Bundle 'jnwhiteh/vim-golang'
+
 " snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
