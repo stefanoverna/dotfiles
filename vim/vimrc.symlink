@@ -110,12 +110,11 @@ noremap <Right> <nop>
 " == Ruby blocks ==
 runtime macros/matchit.vim
 
-" == CtrlP ==
-let g:ctrlp_map = '<leader>l'
-noremap <leader>. :CtrlPMRU<CR>
-let g:ctrlp_match_window_reversed = 0
+" == Command-T ==
+nnoremap <silent> <Leader>l :CommandT<CR>
+let g:CommandTMaxHeight=20
+let g:CommandTMinHeight=5
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,*/tmp/*
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
 
 " == DestroyAllSoftware tips ==
 

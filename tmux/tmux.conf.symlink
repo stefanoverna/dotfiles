@@ -23,7 +23,9 @@ set -sg escape-time 1
 # Extend the repeat interval for repeatable commands (e.g., resize-pane)
 set -sg repeat-time 1000
 
-bind -n C-k send-keys -R \; clear-history \; display "Clean!"
+# Clean screen
+
+bind -n C-p send-keys -R \; clear-history \; display "Clean!"
 
 # Close other panels
 bind q kill-pane -a -t 0
