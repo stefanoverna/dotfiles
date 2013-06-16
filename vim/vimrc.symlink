@@ -288,7 +288,7 @@ let NERDTreeIgnore=['node_modules', 'stubs']
 nnoremap <silent> <leader>A :<C-U>w \| call Plumber("rspec spec")<CR>
 
 " Use the silver searcher
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Convert hashrockets into new 1.9 hash syntax
 noremap <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
@@ -308,4 +308,13 @@ endfunction
 " POSIX says a line is a sequence of zero or more non-newline characters plus
 " a terminating newline character
 autocmd BufWritePre * :call AddTrailingNewLine()
+
+cmap w!! w !sudo tee %
+command! KillControlM :normal :%s/<C-V><C-M>//e<CR><C-O><CR>
+
+" Faster split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
