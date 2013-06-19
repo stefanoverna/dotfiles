@@ -112,6 +112,8 @@ runtime macros/matchit.vim
 
 " == Command-T ==
 nnoremap <silent> <Leader>l :CommandT<CR>
+nnoremap <silent> <Leader>. :CommandTBuffer<CR>
+let g:CommandTRefreshMap=['<F5>', '<C-f>']
 let g:CommandTMaxHeight=20
 let g:CommandTMinHeight=5
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,*/tmp/*

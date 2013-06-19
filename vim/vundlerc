@@ -67,7 +67,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'christoomey/vim-tmux-navigator'
 
-" rubyblock dependencies
+" dependencies
 Bundle 'tsaleh/vim-matchit'
 Bundle 'kana/vim-textobj-user'
 
