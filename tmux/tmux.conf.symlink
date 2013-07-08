@@ -25,7 +25,7 @@ set -sg repeat-time 1000
 
 # Clean screen
 
-bind -n C-p send-keys -R \; clear-history \; display "Clean!"
+bind -n C-p send-keys -R \; clear-history \; display "clean!"
 
 # Close other panels
 bind q kill-pane -a -t 0
@@ -139,5 +139,5 @@ bind -n C-h run-shell 'tmux-vim-select-pane -L'
 bind -n C-l run-shell 'tmux-vim-select-pane -R'
 bind -n "C-\\" run-shell 'tmux-vim-select-pane -l'
 
-bind F5 run-shell 'tmux-compact'
+bind F5 run-shell 'tmux-compact'\; display "Compact!"
 

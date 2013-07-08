@@ -26,3 +26,7 @@ compinit
 
 # load every completion after autocomplete loads
 for config_file ($ZSH/**/completion.zsh) source $config_file
+
+# load tmux
+if [ "$TMUX" = "" ]; then tmux attach || tmux new; fi
+

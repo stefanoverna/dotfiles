@@ -113,7 +113,7 @@ runtime macros/matchit.vim
 " == Command-T ==
 nnoremap <silent> <Leader>l :CommandT<CR>
 nnoremap <silent> <Leader>. :CommandTBuffer<CR>
-let g:CommandTRefreshMap=['<F5>', '<C-f>']
+let g:CommandTRefreshMap='<C-f>'
 let g:CommandTMaxHeight=20
 let g:CommandTMinHeight=5
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,*/tmp/*
@@ -216,11 +216,6 @@ set mouse=a
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 set ttymouse=xterm2
 
-" == Status bar, replaced with Powerline
-" Always show the status bar
-set laststatus=2
-let g:Powerline_symbols = 'fancy'
-
 " == Disable F1 opening help
 nnoremap <F1> :echo<CR>
 inoremap <F1> <C-o>:echo<CR>
@@ -322,4 +317,19 @@ nnoremap <C-H> <C-W><C-H>
 " More natural split opening
 set splitbelow
 set splitright
+
+" Airline
+" Always show the status bar
+set laststatus=2
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_enable_fugitive = 1
+let g:airline_enable_syntastic = 0
+let g:airline_enable_bufferline = 0
+let g:airline_linecolumn_prefix = '␊ '
+let g:airline_linecolumn_prefix = '␤ '
+let g:airline_linecolumn_prefix = '¶ '
+let g:airline_fugitive_prefix = '⎇  '
+let g:airline_paste_symbol = 'ρ'
+let g:airline_theme='badwolf'
 
