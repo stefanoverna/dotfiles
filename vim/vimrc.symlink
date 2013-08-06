@@ -176,20 +176,6 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 " == Prefills :edit command with the current dir ==
 map <leader>e :edit %%
 
-" == Rename the current file! ==
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    let new_dir = fnamemodify(new_name, ":p:h")
-    if new_name != '' && new_name != old_name
-        exec ':silent !mkdir -p ' . new_dir
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-noremap <leader>n :call RenameFile()<cr>
-
 " == Close VIM if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
@@ -282,6 +268,7 @@ let NERDTreeIgnore=['node_modules', 'stubs']
 
 " <leader>A runs all the specs
 nnoremap <silent> <leader>A :<C-U>w \| call Plumber("rspec spec")<CR>
+nnoremap <silent> <leader>C :<C-U>w \| call Plumber("cucumber")<CR>
 
 " Use the silver searcher
 " let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -323,13 +310,41 @@ set splitright
 set laststatus=2
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_enable_fugitive = 1
 let g:airline_enable_syntastic = 0
 let g:airline_enable_bufferline = 0
+let g:airline_enable_branch = 1
+
 let g:airline_linecolumn_prefix = '␊ '
 let g:airline_linecolumn_prefix = '␤ '
 let g:airline_linecolumn_prefix = '¶ '
-let g:airline_fugitive_prefix = '⎇  '
+let g:airline_branch_prefix = '⎇  '
 let g:airline_paste_symbol = 'ρ'
 let g:airline_theme='badwolf'
+
+" Quickfix
+let g:plumber_use_dispatch = 1
+nmap <silent> <leader>o :cclose<CR>
+nmap <silent> <leader>z :cc<CR>
+
+" rails.vim projections - typing `:Efactory users` will open the users factory
+let g:rails_projections = {
+  \ "spec/factories/*.rb": {
+  \   "command":   "factory",
+  \   "affinity":  "collection",
+  \   "alternate": "app/models/%i.rb",
+  \   "related":   "db/schema.rb#%s",
+  \   "test":      "spec/models/%i_spec.rb",
+  \   "template":  "FactoryGirl.define do\n  factory :%i do\n  end\nend",
+  \   "keywords":  "factory sequence"
+  \ },
+  \ "app/presenters/*_presenter.rb": {
+  \   "command": "presenter",
+  \   "affinity": "model",
+  \   "alternate": "spec/presenters/%s_presenter_spec.rb",
+  \   "test":      "spec/models/%i_spec.rb",
+  \   "related": "app/models/%s.rb",
+  \   "template": "class %SPresenter < BasePresenter\nend",
+  \   "keywords":  "presents presents_collection"
+  \ },
+  \ }
 

@@ -10,5 +10,6 @@ alias rgco="rails generate controller"
 alias rgmo="rails generate model"
 alias rgmi="rails generate migration"
 
-alias rdm="rake db:migrate"
+alias rdm="rake db:migrate db:test:prepare"
 alias rdr="rake db:rollback"
+

@@ -17,9 +17,6 @@ Bundle 'gmarik/vundle'
 " colors
 Bundle 'wgibbs/vim-irblack'
 
-" session manager
-Bundle 'xolox/vim-session'
-
 " syntaxes
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
@@ -35,6 +32,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'stefanoverna/vim-plumber'
 Bundle 'stefanoverna/vim-i18n'
+Bundle 'tpope/vim-dispatch'
 " ar & ir
 Bundle 'nelstrom/vim-textobj-rubyblock'
 " adding end after if, do, def and several other keywords

@@ -35,18 +35,21 @@ set -sg c0-change-trigger 20
 set -sg c0-change-interval 250
 
 # Copy and paste vim style
-
 unbind [
 bind Escape copy-mode
 bind b copy-mode
 unbind p
 bind p paste-buffer
 bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
+bind-key -t vi-copy 'y' copy-pipe "reattach-to-user-namespace pbcopy"
 bind-key -t vi-copy '{' halfpage-up
 bind-key -t vi-copy '}' halfpage-down
 bind-key -t vi-copy 'i' cancel
 bind-key -t vi-copy Escape cancel
+
+# Update default binding of `Enter` to also use copy-pipe
+unbind -t vi-copy Enter
+bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
 
 # Zoom pane
 
@@ -69,8 +72,9 @@ setw -g mode-keys vi
 # Split windows more intuitively (except for the fact that tmux doesn't
 # understand that a horizontal split means the pane should be split down the
 # middle horizontally, and likewise for a vertical split).
-bind \ split-window -h
-bind - split-window -v
+unbind x
+bind v split-window -h
+bind x split-window -v
 
 # Navigate panes vim-style!
 bind h select-pane -L
@@ -91,8 +95,9 @@ bind -r J resize-pane -D 5
 bind -r K resize-pane -U 5
 bind -r L resize-pane -R 5
 
-# Renumber windows
-bind m command-prompt -p "move window to:"  "move-window -t '%%'"
+# pane movement
+bind-key s break-pane -t :
+bind-key j command-prompt -p "window to join as pane:"  "join-pane -s ':%%'"
 
 # Colors
 
