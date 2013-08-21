@@ -1,15 +1,18 @@
 alias b="bundle"
-alias be="bundle exec"
-alias bs="bundle show"
+alias bi="b install --binstubs=bin/stubs"
 
 alias rc="rails console"
 alias rs="rails server"
-alias rg="rails generate"
+alias rg="rails g"
 
-alias rgco="rails generate controller"
-alias rgmo="rails generate model"
-alias rgmi="rails generate migration"
+alias rgco="rg controller"
+alias rgmo="rg model"
+alias rgmi="rg migration"
 
-alias rdm="rake db:migrate db:test:prepare"
+# to test both up an down migrations
+alias rdm="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
 alias rdr="rake db:rollback"
+alias rds="rake db:seed"
+
+alias devlog="tail -f log/development.log"
 

@@ -89,5 +89,10 @@
 
 [github]
   user = stefanoverna
+
 [push]
-	default = simple
+  default = simple
+
+[merge]
+  ff = only
+

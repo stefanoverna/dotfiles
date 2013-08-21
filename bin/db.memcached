@@ -1,0 +1,18 @@
+#!/bin/sh
+
+MEMCACHEDPID='/usr/local/var/run/memcached.pid'
+
+case "$1" in
+  start)
+    memcached -d -P $MEMCACHEDPID
+    ;;
+  stop)
+    PID=`cat $MEMCACHEDPID`
+    if [ ! -z "$PID" ]; then
+      kill -15 $PID
+    fi
+    ;;
+  *)
+    memcached $@
+esac
+

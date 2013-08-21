@@ -213,13 +213,6 @@ nnoremap <silent><unique> <Leader>i <Plug>IndentGuidesToggle
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=None
 
-function! RestartServer()
-  exec ':silent !mkdir -p tmp'
-  exec ':silent !touch tmp/restart.txt'
-  redraw!
-endfunction
-noremap <leader>r :call RestartServer()<cr>
-
 " quick save and quit!
 nnoremap s :w<CR>
 
@@ -320,11 +313,6 @@ let g:airline_linecolumn_prefix = '¶ '
 let g:airline_branch_prefix = '⎇  '
 let g:airline_paste_symbol = 'ρ'
 let g:airline_theme='badwolf'
-
-" Quickfix
-let g:plumber_use_dispatch = 1
-nmap <silent> <leader>o :cclose<CR>
-nmap <silent> <leader>z :cc<CR>
 
 " rails.vim projections - typing `:Efactory users` will open the users factory
 let g:rails_projections = {

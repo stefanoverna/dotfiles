@@ -127,10 +127,10 @@ set -g message-attr bright
 # Status Bar Items
 set -g status-utf8 on
 set -g status-left-length 40
-set -g status-left "[#S:#I]"
-set -g status-right "#%d %b %R"
+set -g status-interval 5
+set -g status-left "#(tmux-mem-cpu-load 5 7)#[default]"
+set -g status-right "#%d %b %R [#S:#I]"
 set -g status-justify centre
-set -g status-interval 15
 
 # Monitor windows for activity
 setw -g monitor-activity on

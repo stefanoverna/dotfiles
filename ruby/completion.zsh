@@ -17,7 +17,6 @@ function _rbenv() {
 
 compctl -K _rbenv rbenv
 
-
 function _rake() {
   if [ -f Rakefile ]; then
     recent=`last_modified .rake_tasks~ Rakefile **/*.rake`
@@ -29,3 +28,10 @@ function _rake() {
 }
 
 compdef _rake rake
+
+function _rspec() {
+  compadd -P spec/ `ls spec/**/*_spec.rb | sed -E "s/spec\///g"`
+}
+
+compdef _rspec rspec
+
