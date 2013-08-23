@@ -1,3 +1,6 @@
+[commit]
+  template = ~/.git-commit-template
+
 [alias]
   co = checkout
   ci = commit
