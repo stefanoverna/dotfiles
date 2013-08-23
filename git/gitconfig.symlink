@@ -1,58 +1,36 @@
 [alias]
-  # unstage
-  unstage = reset HEAD
-
-  # pull with rebase on top
-  p = pull --rebase
-
-  # commit
   co = checkout
   ci = commit
-  c = commit
-
-  # recommit (amend last commit)
-  reco = commit --amend
-
-  # undo commit
-  unci = reset --soft HEAD^
-
-  # infos
-  fame = shortlog -s --
-  l = log --graph --decorate --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset %C(yellow)<%an>%Creset'
-  ll = log --oneline --decorate --stat --graph
-  s = diff --stat
-  ss = status --short
-  d = difftool
-  dc = diff --cached
 
   # add and remove all
   aa = add -A .
   # add, interactive mode
   ap = add -p
 
-  # remove untracked files and dirs
-  rmuntr = clean -fd
+  # pull with rebase on top
+  p = pull --rebase
 
-  # show all branches
-  branches = branch -a
-  # creates a branch
-  newbr = checkout -b
-  # checkout a branch
-  br = checkout
-  # removes a branch
-  rmbr = branch -d
+  # unstage
+  unstage = reset HEAD
+
+  # recommit (amend last commit)
+  amend = commit --amend
+
+  # infos
+  l = log --graph --decorate --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset %C(yellow)<%an>%Creset'
+  ll = log --oneline --decorate --stat --graph
+
+  # remove untracked files and dirs
+  remove-untracked = clean -fd
 
   # rebase commits, interactive mode
   rb = rebase --interactive
-  squash = rebase --interactive
 
   # ignore tracked file
-  ig = update-index --assume-unchanged
-  # stop ignoring tracked file
-  noig = update-index --no-assume-unchanged
+  local-ignore = update-index --assume-unchanged
 
-  # list aliases
-  al = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+  # stop ignoring tracked file
+  stop-local-ignore = update-index --no-assume-unchanged
 
 [user]
   name = Stefano Verna

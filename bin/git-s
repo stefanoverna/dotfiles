@@ -1,0 +1,16 @@
+#!/bin/zsh
+autoload colors && colors
+
+echo "\n$fg_bold[blue]branch status$reset_color"
+
+git -c color.status=always status --short | sed 's/^/ /'
+
+echo "\n$fg_bold[green]staged diffstat$reset_color"
+git diff --stat --cached
+
+echo "\n$fg_bold[yellow]unstaged diffstat$reset_color"
+git diff --stat
+
+echo
+
+
