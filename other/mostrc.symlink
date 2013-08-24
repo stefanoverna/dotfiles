@@ -1,0 +1,46 @@
+% This is an example configuration file that provides a `less' emulation 
+% for MOST.
+%
+% The format is simple: 
+%       setkey <function-name> <key-name>
+%       unsetkey <key-name>
+%       color <object-name> <fg> <bg>
+%
+% Here <key-name> must be enclosed in double quotes.  '^' represents Ctrl.
+% The function name is not in double quotes.
+% 
+%
+% When MOST starts up, it looks for a keymap file given by the environment 
+% variable MOST_INITFILE.  If that environment variable does not exist, 
+% MOST will look in the users HOME directory for .mostrc on Unix systems
+% and MOST.RC on VMS systems.
+%
+% The file `most.rc' contains a listing of the default MOST keybindings.
+
+% Keybindings
+
+unsetkey "j"
+setkey down "j"
+
+unsetkey "k"
+setkey up "k"
+
+unsetkey ":"
+setkey goto_line ":"
+
+setkey page_down "}"
+setkey page_up "{"
+
+setkey search_backward "?"
+setkey search_forward "/"
+
+unsetkey "g"
+setkey bob "g"
+unsetkey "G"
+setkey eob "G"
+
+unsetkey "h"
+setkey column_left "h"
+unsetkey "l"
+setkey column_right "l"
+
