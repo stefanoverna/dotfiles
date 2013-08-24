@@ -1,17 +1,5 @@
-setopt extendedglob
-
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
-
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/code
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-source $ZSH/zsh/zsh-syntax-highlighting.zsh
-source $ZSH/zsh/zsh-history-substring-search.zsh
-
-# source every .zsh file in this rep
-for config_file ($ZSH/**/(^completion).zsh) source $config_file
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
@@ -20,13 +8,35 @@ then
   source ~/.localrc
 fi
 
+# all of our zsh files
+typeset -U config_files
+config_files=($ZSH/**/*.zsh)
+
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}; do
+  source $file
+done
+
+# load everything but the path and completion files
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
+  source $file
+done
+
 # initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
+autoload -Uz compinit
 compinit
 
 # load every completion after autocomplete loads
-for config_file ($ZSH/**/completion.zsh) source $config_file
+for file in ${(M)config_files:#*/completion.zsh}; do
+  source $file
+done
+
+alias g='git'
+
+unset config_files
 
 # load tmux
-if [ "$TMUX" = "" ]; then tmux attach || tmux new; fi
+if [ "$TMUX" = "" ]; then 
+  tmux attach || tmux new
+fi
 

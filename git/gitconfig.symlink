@@ -2,10 +2,9 @@
   template = ~/.git-commit-template
 
 [alias]
-  co = checkout
-
   # add and remove all
   add-remove-all = add -A .
+
   # add, interactive mode
   add-interactive = add -p
 

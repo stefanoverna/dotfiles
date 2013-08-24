@@ -1,22 +1,41 @@
 alias g='git'
 
-alias gs='g status-diff'
-alias gc='g commit'
-alias gp='g pull-rebase'
-alias gd='g diff'
-alias gr='g remote'
+alias gl='git pull'
+alias gup='git pull-rebase'
+alias gm='git merge'
 
-alias ga='g add'
-alias gaa='g add-remove-all'
-alias gai='g add-interactive'
+alias ga='git add'
+alias gaa='git add-remove-all'
+alias gap='git add-interactive'
 
-alias gru='g remove-untracked'
-alias grs='g remove-from-staging'
+alias gp='git push'
 
-alias grb='g rebase-interactive'
-alias grc='g amend'
+alias gc='git commit -v'
+alias gc!='git amend -v'
 
-alias gl='g nice-oneline-log'
-alias gll='g nice-detail-log'
-alias gi='g summary && g info --no-config'
+alias gco='git checkout'
+alias gcm='git checkout master'
+
+alias gr='git remote'
+alias grv='git remote -v'
+alias grmv='git remote rename'
+alias grrm='git remote remove'
+alias grset='git remote set-url'
+alias grup='git remote update'
+
+alias grbi='git rebase-interactive'
+alias grbc='git rebase --continue'
+alias grba='git rebase --abort'
+
+alias gb='git branch'
+alias gba='git branch -a'
+
+alias gcp='git cherry-pick'
+
+alias glg='git nice-oneline-log'
+alias glgg='git nice-detail-log'
+
+alias gs='git status-diff'
+alias gst='git status'
+alias gd='git diff'
 

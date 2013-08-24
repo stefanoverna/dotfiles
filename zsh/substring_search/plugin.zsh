@@ -1,4 +1,3 @@
-#!/usr/bin/env zsh
 ##############################################################################
 #
 # Copyright (c) 2009 Peter Stephenson
@@ -71,9 +70,6 @@ function history-substring-search-down() {
 
 zle -N history-substring-search-up
 zle -N history-substring-search-down
-
-bindkey '\e[A' history-substring-search-up
-bindkey '\e[B' history-substring-search-down
 
 #-----------------------------------------------------------------------------
 # implementation details
@@ -562,3 +558,4 @@ function _history-substring-search-down-search() {
 
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
+
