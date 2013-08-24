@@ -3,31 +3,30 @@
 
 [alias]
   co = checkout
-  ci = commit
 
   # add and remove all
-  aa = add -A .
+  add-remove-all = add -A .
   # add, interactive mode
-  ap = add -p
+  add-interactive = add -p
 
   # pull with rebase on top
-  p = pull --rebase
+  pull-rebase = pull --rebase
 
   # unstage
-  unstage = reset HEAD
+  remove-from-staging = reset HEAD
 
   # recommit (amend last commit)
   amend = commit --amend
 
   # infos
-  l = log --graph --decorate --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset %C(yellow)<%an>%Creset'
-  ll = log --oneline --decorate --stat --graph
+  nice-oneline-log = log --graph --decorate --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset %C(yellow)<%an>%Creset'
+  nice-detail-log = log --oneline --decorate --stat --graph
 
   # remove untracked files and dirs
   remove-untracked = clean -fd
 
   # rebase commits, interactive mode
-  rb = rebase --interactive
+  rebase-interactive = rebase --interactive
 
   # ignore tracked file
   local-ignore = update-index --assume-unchanged
