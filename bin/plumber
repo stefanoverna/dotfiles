@@ -8,6 +8,8 @@ if [ ! -p $PIPE_NAME ]; then
   mkfifo $PIPE_NAME
 fi
 
+tmux display-message -p '#S:#I.#P' > .plumber-pane
+
 echo "Waiting for commands!"
 
 function hr {
@@ -16,7 +18,6 @@ function hr {
 
 while true; do
   COMMAND=$(cat $PIPE_NAME)
-  clear
   hr =
   echo $COMMAND
   hr -
@@ -24,5 +25,9 @@ while true; do
   echo
   hr =
   echo
+  # Enter copy mode
+  tmux copy-mode -u
+  # Go to the top of buffer
+  tmux send-keys $'\g'
 done
 

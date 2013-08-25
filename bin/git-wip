@@ -1,3 +1,4 @@
 #!/bin/sh
-git aa
-git commit -m "wip"
+gaa
+g commit -m "wip"
+

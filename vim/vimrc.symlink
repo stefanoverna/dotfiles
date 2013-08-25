@@ -89,7 +89,7 @@ au BufRead,BufNewFile *.md,*.markdown setlocal textwidth=80
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
 au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-au Filetype gitcommit setlocal spell textwidth=72 colorcolumn=72
+au Filetype gitcommit setlocal textwidth=72 colorcolumn=72
 
 " Automatically remove trailing spaces on some files (and fix tabs)
 au BufWritePre *.rb,*.css,*.sass,*.scss,*.coffee :%s/\s\+$//e | :retab
@@ -275,10 +275,9 @@ noremap <leader>zz :%s/\[\s\+\([^\]]\+\)\s\+\]/[\1]/ge<CR><C-o>
 noremap <leader>ss :%s/\s\+$//e<CR><C-o>
 
 function! AddTrailingNewLine()
-  if match(getline("$"), "^\\s*$") ==# -1
-    $s/^\(.*\)$/\1\r/
-    exec "normal \<c-o>"
-  end
+  " \%$ -> end of file
+  %s/[\r\n]*\%$/\r/
+  exec "silent! normal! \<c-o>"
 endfunction
 
 " POSIX says a line is a sequence of zero or more non-newline characters plus
@@ -335,4 +334,6 @@ let g:rails_projections = {
   \   "keywords":  "presents presents_collection"
   \ },
   \ }
+
+let g:plumber_precommand = 'plumber-exit-copy-mode'
 

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+DEFAULT_PANE_NAME=".plumber-pane"
+PANE_NAME="${1:-$DEFAULT_PANE_NAME}"
+
+if [ ! -p $PIPE_NAME ]; then
+  exit
+fi
+
+# Exit copy mode
+tmux send-keys -t $(cat $PANE_NAME) $'\e'
+
+# Clear screen
+tmux send-keys -t $(cat $PANE_NAME) -R
+tmux clear-history -t $(cat $PANE_NAME)
+

@@ -13,6 +13,9 @@ alias gp='git push'
 alias gc='git commit -v'
 alias gc!='git amend -v'
 
+alias grc='git reset HEAD^'
+alias grh='git reset HEAD'
+
 alias gco='git checkout'
 alias gcm='git checkout master'
 

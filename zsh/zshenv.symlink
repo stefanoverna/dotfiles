@@ -1,0 +1,5 @@
+# even on non-interactive shells, include aliases
+for file in $HOME/.dotfiles/**/aliases.zsh; do
+  source $file
+done
+
