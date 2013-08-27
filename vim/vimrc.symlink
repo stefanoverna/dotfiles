@@ -16,12 +16,10 @@ set encoding=utf-8
 " Leader key
 let mapleader=","
 " Black background, please
-set background=dark
 
 " My favourite syntax colorscheme (iterm 256 colors)
 set t_Co=256
 color ir_black
-set background=dark
 
 " Line numbering
 set number

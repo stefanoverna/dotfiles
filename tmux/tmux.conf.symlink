@@ -146,3 +146,5 @@ bind -n "C-\\" run-shell 'tmux-vim-select-pane -l'
 
 bind F5 run-shell 'tmux-compact'\; display "Compact!"
 
+set -g default-terminal "xterm-256color"
+

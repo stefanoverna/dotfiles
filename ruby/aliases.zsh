@@ -1,7 +1,10 @@
 alias b="bundle"
 alias bi="b install --binstubs=bin/stubs"
+alias bo="b open"
+alias bs="b show"
+alias bu="b update"
 
-alias rc="rails console"
+alias -g rc="rails console"
 alias rs="rails server"
 alias rg="rails g"
 
@@ -12,8 +15,10 @@ alias rgp="rg showcase:presenter"
 
 # to test both up an down migrations
 alias rdm="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
-alias rdr="rake db:rollback"
-alias rds="rake db:seed"
+alias -g rdmm="rake db:migrate"
+alias -g rdr="rake db:rollback"
+alias -g rds="rake db:seed"
 
 alias devlog="tail -f log/development.log"
+alias fs="foreman start"
 
