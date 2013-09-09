@@ -8,13 +8,19 @@ if [ ! -p $PIPE_NAME ]; then
   mkfifo $PIPE_NAME
 fi
 
-tmux display-message -p '#S:#I.#P' > .plumber-pane
+# Clear screen
+tmux send-keys -R
+tmux clear-history
 
 echo "Waiting for commands!"
 
 function hr {
   printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' ${1:-}
 }
+
+# Save tmux pane name
+PANE_NAME=`tmux display-message -p '#S:#I.#P'`
+echo $PANE_NAME > .plumber-pane
 
 while true; do
   COMMAND=$(cat $PIPE_NAME)
@@ -25,9 +31,12 @@ while true; do
   echo
   hr =
   echo
+
   # Enter copy mode
-  tmux copy-mode -u
+  tmux copy-mode -t $PANE_NAME -u
   # Go to the top of buffer
-  tmux send-keys $'\g'
+  tmux send-keys -t $PANE_NAME $'\g'
+  # Notify
+  tmux display "Done plumbing."
 done
 

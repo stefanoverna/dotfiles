@@ -15,6 +15,7 @@ alias rgp="rg showcase:presenter"
 
 # to test both up an down migrations
 alias rdm="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
+alias rdp="rake db:test:prepare"
 alias -g rdmm="rake db:migrate"
 alias -g rdr="rake db:rollback"
 alias -g rds="rake db:seed"

@@ -20,6 +20,7 @@
   # infos
   nice-oneline-log = log --graph --decorate --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset - %Cgreen%cd%Creset - %s%Creset %C(yellow)<%an>%Creset'
   nice-detail-log = log --oneline --decorate --stat --graph
+  last-commit = log -1 --format='%s'
 
   # remove untracked files and dirs
   remove-untracked = clean -fd

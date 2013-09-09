@@ -1,6 +1,10 @@
 # Stolen from
 #   https://github.com/sstephenson/rbenv/blob/master/completions/rbenv.zsh
 
+function last_modified() {
+  ls -t $* 2> /dev/null | head -n 1
+}
+
 function _rbenv() {
   local word words completions
   read -cA words

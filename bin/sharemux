@@ -1,5 +1,6 @@
-echo 'guest needs to do "tweemux on guest@code.welaika.com 6666" (password: guest)'
+#!/bin/bash
+PORT=${1:-6666}
+echo "guest needs to do 'tweemux on guest@code.welaika.com $PORT' (password: guest)"
 read foo
-tweemux forward local 22 from steffoz@code.welaika.com 6666
-tweemux host
+tweemux forward local 22 from steffoz@code.welaika.com $PORT && tweemux host
 

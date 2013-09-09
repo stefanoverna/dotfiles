@@ -7,7 +7,6 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 !tmp/cache/.keep
-tags
 public/system
 .powder
 .rvmrc
