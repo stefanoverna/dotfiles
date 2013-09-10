@@ -14,7 +14,7 @@ alias gc='git commit -v'
 alias gc!='git amend -v'
 
 alias grc='git reset HEAD^'
-alias grh='git reset HEAD'
+alias grh='git reset HEAD --hard'
 alias grmu='git remove-untracked'
 
 alias gco='git checkout'
@@ -27,12 +27,14 @@ alias grrm='git remote remove'
 alias grset='git remote set-url'
 alias grup='git remote update'
 
+alias grb='git rebase'
 alias grbi='git rebase-interactive'
 alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
 
 alias gb='git branch'
 alias gba='git branch -a'
+alias gbrm='git branch -d'
 
 alias gcp='git cherry-pick'
 
