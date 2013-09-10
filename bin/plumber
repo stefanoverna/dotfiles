@@ -27,7 +27,7 @@ while true; do
   hr =
   echo $COMMAND
   hr -
-  sh -c "$COMMAND"
+  zsh -ic "$COMMAND"
   echo
   hr =
   echo
