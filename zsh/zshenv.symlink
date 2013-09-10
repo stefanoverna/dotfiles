@@ -1,5 +1,10 @@
 # even on non-interactive shells, include aliases
-for file in $HOME/.dotfiles/**/aliases.zsh; do
+export ZSH=$HOME/.dotfiles
+
+for file in $ZSH/**/aliases.zsh; do
   source $file
 done
+
+fpath=($ZSH/functions $fpath)
+autoload -U $ZSH/functions/*(:t)
 
