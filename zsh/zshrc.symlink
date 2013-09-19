@@ -33,8 +33,3 @@ done
 
 unset config_files
 
-# load tmux
-if [ "$TMUX" = "" ]; then 
-  tmux attach || tmux new
-fi
-

@@ -14,8 +14,10 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
-" colors
-Bundle 'wgibbs/vim-irblack'
+" 16 colors colorschemes, to uniform terminal experience
+Bundle 'noahfrederick/vim-noctu'
+Bundle 'vim-scripts/xterm16.vim'
+Bundle 'wesgibbs/vim-irblack'
 
 " syntaxes
 Bundle 'tpope/vim-haml'
@@ -26,6 +28,7 @@ Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'wavded/vim-stylus'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'tpope/vim-cucumber'
 
 " ruby stuff
 Bundle 'vim-ruby/vim-ruby'

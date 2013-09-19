@@ -1,5 +1,7 @@
 alias g='git'
 
+alias gf='git fetch --prune'
+
 alias gl='git pull'
 alias gup='git pull-rebase'
 alias gm='git merge'
