@@ -14,10 +14,8 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
-" 16 colors colorschemes, to uniform terminal experience
+" 16 colors colorscheme, for a uniform terminal experience
 Bundle 'noahfrederick/vim-noctu'
-Bundle 'vim-scripts/xterm16.vim'
-Bundle 'wesgibbs/vim-irblack'
 
 " syntaxes
 Bundle 'tpope/vim-haml'
@@ -29,45 +27,50 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'wavded/vim-stylus'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'tpope/vim-cucumber'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'jnwhiteh/vim-golang'
 
 " ruby stuff
-Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'stefanoverna/vim-plumber'
-Bundle 'stefanoverna/vim-i18n'
-Bundle 'tpope/vim-dispatch'
-" ar & ir
-Bundle 'nelstrom/vim-textobj-rubyblock'
 " adding end after if, do, def and several other keywords
 Bundle 'tpope/vim-endwise'
 
-" go
-Bundle 'jnwhiteh/vim-golang'
-
-" snipmate
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'stefanoverna/snipmate-snippets'
-Bundle 'garbas/vim-snipmate'
-
-" other great
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'bogado/file-line'
-Bundle 'mileszs/ack.vim'
-Bundle 'sickill/vim-pasta'
-Bundle 'godlygeek/tabular'
-Bundle 'wincent/Command-T'
-Bundle 'ervandew/supertab'
-Bundle 'scrooloose/nerdtree'
-Bundle 'bling/vim-airline'
+" Git (used with airline)
 Bundle 'tpope/vim-fugitive'
-Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'airblade/vim-gitgutter'
+
+" smart autocompletion
+Bundle 'ervandew/supertab'
+" snippets
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "stefanoverna/snipmate-snippets"
+" nice status line
+Bundle 'bling/vim-airline'
+" open files in specific line (eg. vim ~/foo.rb:12)
+Bundle 'bogado/file-line'
+" handy tmux-vim panes navigation
 Bundle 'christoomey/vim-tmux-navigator'
+" search
+Bundle 'mileszs/ack.vim'
+" visual tab hints
+Bundle 'nathanaelkane/vim-indent-guides'
+" project drawer
+Bundle 'scrooloose/nerdtree'
+" smarter pasting
+Bundle 'sickill/vim-pasta'
+" %S
+Bundle 'tpope/vim-abolish'
+" Comment all the things
+Bundle 'tpope/vim-commentary'
+" Repeat more stuff
+Bundle 'tpope/vim-repeat'
+" cs"'
+Bundle 'tpope/vim-surround'
+" Fuzzy file search
+Bundle 'wincent/Command-T'
 
 " dependencies
 Bundle 'tsaleh/vim-matchit'

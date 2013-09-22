@@ -101,6 +101,9 @@ au Filetype gitcommit setlocal textwidth=72 colorcolumn=72
 " Automatically remove trailing spaces on some files (and fix tabs)
 au BufWritePre *.rb,*.css,*.sass,*.scss,*.coffee :%s/\s\+$//e | :retab
 
+" Slim comments start with /
+autocmd FileType slim set commentstring=\/\ %s
+
 " provide some context when editing
 set scrolloff=3
 
