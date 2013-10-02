@@ -344,3 +344,8 @@ let g:rails_projections = {
 
 let g:plumber_precommand = 'plumber-exit-copy-mode'
 
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+
+let g:SuperTabMappingForward = '\'
+
