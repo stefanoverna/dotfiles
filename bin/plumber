@@ -4,8 +4,12 @@ DEFAULT_PIPE_NAME=".plumber"
 PIPE_NAME="${1:-$DEFAULT_PIPE_NAME}"
 
 if [ ! -p $PIPE_NAME ]; then
-  echo "Created pipe ${PIPE_NAME}..."
   mkfifo $PIPE_NAME
+fi
+
+if [ -z "$TMUX" ]; then
+  echo "Plumbing works better inside a tmux pane! :)"
+  exit
 fi
 
 # Clear screen
