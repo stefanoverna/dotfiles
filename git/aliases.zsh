@@ -36,7 +36,7 @@ alias grba='git rebase --abort'
 
 alias gb='git branch'
 alias gba='git branch -a'
-alias gbrm='git branch -d'
+alias gbrm='git push --delete origin'
 
 alias gcp='git cherry-pick'
 

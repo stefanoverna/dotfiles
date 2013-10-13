@@ -71,6 +71,8 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 " Fuzzy file search
 Bundle 'wincent/Command-T'
+" populate the argument list from the files in the quickfix list
+Bundle 'henrik/vim-qargs'
 
 " dependencies
 Bundle 'tsaleh/vim-matchit'
