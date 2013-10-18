@@ -54,7 +54,7 @@ Bundle 'bogado/file-line'
 " handy tmux-vim panes navigation
 Bundle 'christoomey/vim-tmux-navigator'
 " search
-Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 " visual tab hints
 Bundle 'nathanaelkane/vim-indent-guides'
 " project drawer

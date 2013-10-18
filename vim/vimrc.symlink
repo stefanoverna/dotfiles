@@ -122,7 +122,6 @@ runtime macros/matchit.vim
 
 " == Command-T ==
 nnoremap <silent> <Leader>l :CommandT<CR>
-nnoremap <silent> <Leader>. :CommandTBuffer<CR>
 let g:CommandTRefreshMap='<C-f>'
 let g:CommandTMaxHeight=20
 let g:CommandTMinHeight=5
@@ -133,8 +132,8 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,*/tmp/*
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" leader-f for Ack
-noremap <leader>f :Ack<space>
+" leader-f for The Silver Searcher
+nnoremap <leader>f :Ag '
 
 " Open routes.rb
 noremap <leader>gr :topleft :60split config/routes.rb<cr>
@@ -270,13 +269,8 @@ let NERDTreeIgnore=['node_modules', 'stubs']
 nnoremap <silent> <leader>A :<C-U>w \| call Plumber("rspec spec")<CR>
 nnoremap <silent> <leader>C :<C-U>w \| call Plumber("cucumber")<CR>
 
-" Use the silver searcher
-" let g:ackprg = 'ag --nogroup --nocolor --column'
-
 " Convert hashrockets into new 1.9 hash syntax
 noremap <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
-" Remove space inside square brackets
-noremap <leader>zz :%s/\[\s\+\([^\]]\+\)\s\+\]/[\1]/ge<CR><C-o>
 
 " Remove trailing spaces
 noremap <leader>ss :%s/\s\+$//e<CR><C-o>
