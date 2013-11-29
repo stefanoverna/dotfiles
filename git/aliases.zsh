@@ -35,8 +35,9 @@ alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
 
 alias gb='git branch'
-alias gba='git branch -a'
-alias gbrm='git push --delete origin'
+alias gbls='git branch -a'
+alias gbrrm='git push --delete'
+alias gblrm='git branch -D'
 
 alias gcp='git cherry-pick'
 
@@ -45,5 +46,5 @@ alias glgg='git nice-detail-log'
 
 alias gs='git status-diff'
 alias gst='git status'
-alias gd='git diff'
+alias gd='git diff --ignore-space-at-eol -b -w --ignore-blank-lines'
 

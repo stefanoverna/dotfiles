@@ -73,6 +73,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'wincent/Command-T'
 " populate the argument list from the files in the quickfix list
 Bundle 'henrik/vim-qargs'
+" Preview %s
+Bundle 'osyo-manga/vim-over'
 
 " dependencies
 Bundle 'tsaleh/vim-matchit'

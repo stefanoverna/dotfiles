@@ -23,8 +23,8 @@ set cmdheight=1
 set t_Co=16
 set background=dark
 colorscheme noctu
-hi VertSplit ctermbg=0 ctermfg=0
-hi ColorColumn ctermbg=8 ctermfg=NONE
+hi VertSplit ctermbg=8 ctermfg=8
+hi ColorColumn ctermbg=0 ctermfg=NONE
 
 hi! link Define Function
 hi! link Macro Function
@@ -82,16 +82,13 @@ au BufRead,BufNewFile vundlerc set ft=vim
 au BufNewFile,BufRead *.json set ft=javascript
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Podfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+au BufRead,BufNewFile {Podfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
 " Movefile is Yaml
-au BufRead,BufNewFile {Movefile}    set ft=yaml
+au BufRead,BufNewFile {Movefile} set ft=yaml
 
 " Cakefile is Yaml
-au BufRead,BufNewFile {Cakefile}    set ft=coffee
-
-" Wrap text at 80 chars
-au BufRead,BufNewFile *.md,*.markdown setlocal textwidth=80
+au BufRead,BufNewFile {Cakefile} set ft=coffee
 
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
@@ -226,10 +223,6 @@ nnoremap s :w<CR>
 nnoremap Q q
 nnoremap q :q<CR>
 
-" + and - increment and decrement numbers
-nnoremap + <C-a>
-nnoremap - <C-x>
-
 " sessions
 let g:session_directory = "."
 let g:session_autoload = 'yes'
@@ -288,12 +281,6 @@ autocmd BufWritePre * :call AddTrailingNewLine()
 cmap w!! w !sudo tee %
 command! KillControlM :normal :%s/<C-V><C-M>//e<CR><C-O><CR>
 
-" Faster split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 " More natural split opening
 set splitbelow
 set splitright
@@ -313,28 +300,6 @@ let g:airline_linecolumn_prefix = '¶ '
 let g:airline_branch_prefix = '⎇  '
 let g:airline_paste_symbol = 'ρ'
 let g:airline_theme='badwolf'
-
-" rails.vim projections - typing `:Efactory users` will open the users factory
-let g:rails_projections = {
-  \ "spec/factories/*.rb": {
-  \   "command":   "factory",
-  \   "affinity":  "collection",
-  \   "alternate": "app/models/%i.rb",
-  \   "related":   "db/schema.rb#%s",
-  \   "test":      "spec/models/%i_spec.rb",
-  \   "template":  "FactoryGirl.define do\n  factory :%i do\n  end\nend",
-  \   "keywords":  "factory sequence"
-  \ },
-  \ "app/presenters/*_presenter.rb": {
-  \   "command": "presenter",
-  \   "affinity": "model",
-  \   "alternate": "spec/presenters/%s_presenter_spec.rb",
-  \   "test":      "spec/models/%i_spec.rb",
-  \   "related": "app/models/%s.rb",
-  \   "template": "class %SPresenter < BasePresenter\nend",
-  \   "keywords":  "presents presents_collection"
-  \ },
-  \ }
 
 let g:plumber_precommand = 'plumber-exit-copy-mode'
 
