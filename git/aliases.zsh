@@ -1,6 +1,7 @@
 alias g='git'
 
 alias gf='git fetch --prune'
+alias gff='git fetch --prune --all'
 
 alias gl='git pull'
 alias gup='git pull-rebase'
@@ -35,7 +36,7 @@ alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
 
 alias gb='git branch'
-alias gbls='git branch -a'
+alias gbb='git branch -a'
 alias gbrrm='git push --delete'
 alias gblrm='git branch -D'
 
@@ -47,4 +48,8 @@ alias glgg='git nice-detail-log'
 alias gs='git status-diff'
 alias gst='git status'
 alias gd='git diff --ignore-space-at-eol -b -w --ignore-blank-lines'
+
+function gbd() {
+  git diff --ignore-space-at-eol -b -w --ignore-blank-lines $(git merge-base $1 HEAD) $1
+}
 

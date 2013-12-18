@@ -51,9 +51,6 @@ bindkey '^[[1;9C' end-of-line
 
 # allows to glob-search like ssh*.com
 bindkey "\C-r" history-incremental-pattern-search-backward
-# up and down finds commands starting with the typed thingie
-bindkey "^[[A" history-search-backward
-bindkey "^[[B" history-search-forward
 
 # Canc deletes a char
 bindkey '^[[3~' delete-char
@@ -64,4 +61,13 @@ bindkey '^?' backward-delete-char
 bindkey  '^B' backward-delete-word
 # Ctrl + W deletes word
 bindkey  '^W' delete-word
+
+# Search through history for previous commands matching everything up to current 
+# cursor position. Move the cursor to the end of line after each match.
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
 

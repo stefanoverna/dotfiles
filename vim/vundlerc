@@ -75,6 +75,8 @@ Bundle 'wincent/Command-T'
 Bundle 'henrik/vim-qargs'
 " Preview %s
 Bundle 'osyo-manga/vim-over'
+" Patch
+Bundle 'junkblocker/patchreview-vim'
 
 " dependencies
 Bundle 'tsaleh/vim-matchit'

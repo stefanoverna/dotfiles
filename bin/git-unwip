@@ -1,8 +1,0 @@
-#!/bin/sh
-commit=`git log --format="%s" -1`
-if [ "$commit" == "wip" ]; then
-  git reset HEAD^
-else
-  echo "There's no WIP commit!"
-fi
-
