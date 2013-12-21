@@ -1,0 +1,8 @@
+rails() {
+  if [ -S .zeus.sock ]; then
+    zeus "$@"
+  else
+    command rails "$@"
+  fi
+}
+
