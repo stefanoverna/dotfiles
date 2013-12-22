@@ -4,6 +4,7 @@
 
 - `git clone git://github.com/stefanoverna/dotfiles ~/.dotfiles`
 - `cd ~/.dotfiles`
+- `brew bundle Brewfile`
 - `rake install`
 
 The install rake task will symlink the appropriate files in `.dotfiles` to your
@@ -40,3 +41,4 @@ There's a few special files in the hierarchy.
 
 I forked [Zach Holman](http://github.com/holman)' excellent
 [dotfiles](http://github.com/ryanb/dotfiles).
+
