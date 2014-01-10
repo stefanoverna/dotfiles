@@ -22,4 +22,5 @@ alias -g rds="rake db:seed"
 
 alias devlog="tail -f log/development.log"
 alias fs="foreman start"
+alias zs="zeus start"
 
