@@ -14,7 +14,7 @@ alias gap='git add-interactive'
 alias gp='git push'
 
 alias gc='git commit -v'
-alias gc!='git amend -v'
+alias gc!='git commit --amend -v --date="$(date)"'
 
 alias grc='git reset HEAD^'
 alias grh='git reset HEAD --hard'
