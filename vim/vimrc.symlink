@@ -7,10 +7,13 @@ source ~/.dotfiles/vim/vundlerc
 " Enable syntax highlighting
 syntax enable
 
-" Make tab completion for files/buffers act like bash
+" Tab command-line completion
 set wildmenu
+" Complete till longest common string, and open suggestions menu
+set wildmode=longest:full
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,*/tmp/*
 
-" Default charset encoding
+" Default charset encoding.
 set encoding=utf-8
 
 " Leader key
@@ -33,8 +36,9 @@ hi! link Tag SpecialComment
 " Line numbering
 set number
 " Show the cursor position all the time
-set ruler
 set cursorline
+" Silence bells
+set noerrorbells
 
 " Display incomplete commands
 set showcmd
@@ -55,7 +59,7 @@ set expandtab
 " Show invisible characters
 set list
 " backspace through everything in insert mode
-set backspace=indent,eol,start    " List chars
+set backspace=indent,eol,start
 
 " A tab should display as "▸", trailing whitespace as "·"
 " precedes and extends are the characters to sho when wrap
@@ -122,7 +126,6 @@ nnoremap <silent> <Leader>l :CommandT<CR>
 let g:CommandTRefreshMap='<C-f>'
 let g:CommandTMaxHeight=20
 let g:CommandTMinHeight=5
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,*/tmp/*
 
 " == DestroyAllSoftware tips ==
 
@@ -133,16 +136,16 @@ nnoremap <leader><leader> <c-^>
 nnoremap <leader>f :Ag '
 
 " Open routes.rb
-noremap <leader>gr :topleft :60split config/routes.rb<cr>
+noremap <leader>gr :topleft :split config/routes.rb<cr>
 
 " Open database.yml
-noremap <leader>gd :topleft :60split config/database.yml<cr>
+noremap <leader>gd :topleft :split config/database.yml<cr>
 
 " Open schema.rb
-noremap <leader>gs :topleft :60split db/schema.rb<cr>
+noremap <leader>gs :topleft :split db/schema.rb<cr>
 
 " Open Gemfile
-noremap <leader>gg :topleft :60split Gemfile<cr>
+noremap <leader>gg :topleft :split Gemfile<cr>
 
 " Can't be bothered to understand the difference between ESC and <c-c> in
 " insert mode
@@ -162,7 +165,7 @@ endfunction
 nnoremap <leader>c :call ColorPick()<CR>
 
 " == Vertical line at 80 chars ==
-set colorcolumn=80
+set colorcolumn=78
 
 " == Paste from clipboard ==
 set clipboard=unnamed " this needs vim 7.3 with +clipboard
@@ -212,7 +215,6 @@ inoremap <F1> <C-o>:echo<CR>
 " == Indent Guides
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
-nnoremap <silent><unique> <Leader>i <Plug>IndentGuidesToggle
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=NONE
 
@@ -246,7 +248,6 @@ nnoremap L $
 
 " Let's make escape better, together.
 inoremap jk <Esc>
-inoremap kj <Esc>
 
 " split
 nnoremap <leader>v :execute "vsplit " . bufname("#")<CR>
@@ -259,7 +260,6 @@ let NERDTreeIgnore=['node_modules', 'stubs', 'log']
 
 " <leader>A runs all the specs
 nnoremap <silent> <leader>A :<C-U>w \| call Plumber("rspec spec")<CR>
-nnoremap <silent> <leader>C :<C-U>w \| call Plumber("cucumber")<CR>
 
 " Convert hashrockets into new 1.9 hash syntax
 noremap <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
@@ -315,4 +315,29 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+" Insert only one space when joining lines that contain sentence-terminating
+" punctuation like `.`.
+set nojoinspaces
+
+" Saves current file and reloads current Chrome tab
+map <leader>z :w\|:silent !reload-chrome<cr>
+
+" Promote variable to Rspec let
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
+
+" I CAN HAZ NORMAL REGEXES?
+nnoremap / /\v
+vnoremap / /\v
+
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
