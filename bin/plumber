@@ -28,19 +28,22 @@ echo $PANE_NAME > .plumber-pane
 
 while true; do
   COMMAND=$(cat $PIPE_NAME)
-  hr =
-  echo $COMMAND
-  hr -
-  zsh -ic "$COMMAND"
-  echo
-  hr =
-  echo
 
-  # Enter copy mode
-  tmux copy-mode -t $PANE_NAME -u
-  # Go to the top of buffer
-  tmux send-keys -t $PANE_NAME $'\g'
-  # Notify
-  tmux display "Done plumbing."
+  if [ -n "$COMMAND" ]; then
+    hr =
+    echo $COMMAND
+    hr -
+    eval "$COMMAND"
+    echo
+    hr =
+    echo
+
+    # Enter copy mode
+    tmux copy-mode -t $PANE_NAME -u
+    # Go to the top of buffer
+    tmux send-keys -t $PANE_NAME $'\g'
+    # Notify
+    tmux display "Done plumbing."
+  fi
 done
 

@@ -4,8 +4,8 @@
 unbind C-b
 
 # By default, we'll use Control-backslash as the prefix key.
-set -g prefix 'C-a' ;
-bind 'C-a' send-prefix
+set -g prefix 'C-x' ;
+bind 'C-x' send-prefix
 
 # needed for pbcopy/vim's * register to work inside of tmux
 set-option -g default-command "reattach-to-user-namespace -l zsh"

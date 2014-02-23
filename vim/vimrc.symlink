@@ -197,7 +197,9 @@ function! CustomTreeToggle()
   endif
 endfunction
 noremap <leader>d :call CustomTreeToggle()<cr>
+
 let NERDTreeHijackNetrw=1
+let NERDTreeShowHidden=1
 
 " == Mouse support
 " Send more characters for redraws
@@ -256,7 +258,7 @@ nnoremap <leader>x :execute "split " . bufname("#")<CR>
 " y u no consistent?
 nnoremap Y y$
 
-let NERDTreeIgnore=['node_modules', 'stubs', 'log']
+let NERDTreeIgnore=['node_modules', 'stubs', 'log', '.DS_Store']
 
 " <leader>A runs all the specs
 nnoremap <silent> <leader>A :<C-U>w \| call Plumber("rspec spec")<CR>

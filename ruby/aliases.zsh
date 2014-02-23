@@ -1,5 +1,5 @@
 alias b="bundle"
-alias bi="b install --binstubs=bin/stubs"
+alias bi="b install"
 alias bo="b open"
 alias bs="b show"
 alias bu="b update"
