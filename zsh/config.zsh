@@ -58,9 +58,9 @@ bindkey '^[[3~' delete-char
 bindkey '^?' backward-delete-char
 
 # Ctrl + B deletes backward word
-bindkey  '^B' backward-delete-word
+bindkey '^B' backward-delete-word
 # Ctrl + W deletes word
-bindkey  '^W' delete-word
+bindkey '^W' delete-word
 
 # Search through history for previous commands matching everything up to current 
 # cursor position. Move the cursor to the end of line after each match.

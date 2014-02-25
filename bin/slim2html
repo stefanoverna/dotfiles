@@ -1,0 +1,4 @@
+code=$(cat)
+compiled=$(/Users/stefanoverna/.rbenv/shims/slimrb -c <<< "$code")
+ruby -e "$compiled; require 'nokogiri'; doc = Nokogiri::XML(%Q{<div>#{_buf}</div>}, &:noblanks); doc.children.first.children.each { |c| puts c.to_xhtml }"
+
