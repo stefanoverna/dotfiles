@@ -327,14 +327,14 @@ map <leader>z :w\|:silent !reload-chrome<cr>
 
 " Promote variable to Rspec let
 function! PromoteToLet()
-  :normal! dd
+  normal! dd
   " :exec '?^\s*it\>'
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
+  normal! P
+  .s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  normal ==
 endfunction
-:command! PromoteToLet :call PromoteToLet()
-:map <leader>p :PromoteToLet<cr>
+command! PromoteToLet :call PromoteToLet()
+map <leader>p :PromoteToLet<cr>
 
 " I CAN HAZ NORMAL REGEXES?
 nnoremap / /\v
@@ -345,4 +345,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " select last paste in visual mode
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+" reformat method call/function call/hash
+map <leader>b :ReformatCall<cr>
 

@@ -29,6 +29,7 @@ Bundle 'vim-ruby/vim-ruby'
 " ruby stuff
 Bundle 'stefanoverna/vim-plumber'
 Bundle 'stefanoverna/vim-alternate'
+Bundle 'stefanoverna/vim-reformat-call'
 " adding end after if, do, def and several other keywords
 Bundle 'tpope/vim-endwise'
 
