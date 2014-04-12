@@ -24,11 +24,7 @@ set -sg escape-time 1
 set -sg repeat-time 1000
 
 # Clean screen
-
 bind -n C-p send-keys -R \; clear-history \; display "clean!"
-
-# Close other panels
-bind q kill-pane -a -t 0
 
 # Rate limiting
 set -sg c0-change-trigger 20
@@ -50,10 +46,6 @@ bind-key -t vi-copy Escape cancel
 # Update default binding of `Enter` to also use copy-pipe
 unbind -t vi-copy Enter
 bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
-
-# Zoom pane
-
-bind + run "tmux-zoom.sh"
 
 # Mouse Support
 

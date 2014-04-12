@@ -349,3 +349,8 @@ nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 " reformat method call/function call/hash
 map <leader>b :ReformatCall<cr>
 
+" show buffer list as tabs
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#tabline#buffer_nr_format = '%s: '
+
