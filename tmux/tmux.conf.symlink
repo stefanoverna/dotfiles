@@ -142,3 +142,10 @@ set -g default-terminal "xterm-256color"
 
 set-option -g history-limit 10000
 
+# Shift arrow to switch windows
+bind -n S-Left previous-window
+bind -n S-Right next-window
+
+# renumber the windows of a session after any window is closed
+set-option -g renumber-windows on
+
