@@ -104,8 +104,8 @@ set -g status-bg "#333333"
 setw -g window-status-fg white
 setw -g window-status-bg default
 setw -g window-status-attr dim
-setw -g window-status-current-fg white
-setw -g window-status-current-bg red
+setw -g window-status-current-fg black
+setw -g window-status-current-bg cyan
 
 # Pane borders
 set -g pane-border-fg black
@@ -118,11 +118,13 @@ set -g message-attr bright
 
 # Status Bar Items
 set -g status-utf8 on
-set -g status-left-length 40
-set -g status-interval 5
-set -g status-left "#(tmux-mem-cpu-load 5 7)#[default]"
-set -g status-right "#%d %b %R [#S:#I]"
-set -g status-justify centre
+set -g status-left ''
+set -g status-right "[#S:#I] #(tmux-mem-cpu-load 5 7)#[default]"
+set -g status-right-length 60
+set -g status-justify left
+
+setw -g window-status-format "[#I #W]"
+setw -g window-status-current-format "[#I #W]"
 
 # Monitor windows for activity
 setw -g monitor-activity on
