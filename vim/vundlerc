@@ -29,7 +29,12 @@ Bundle 'vim-ruby/vim-ruby'
 " ruby stuff
 Bundle 'stefanoverna/vim-plumber'
 Bundle 'stefanoverna/vim-alternate'
+Bundle 'jgdavey/vim-blockle'
 Bundle 'stefanoverna/vim-reformat-call'
+
+" html stuff
+Bundle 'mattn/emmet-vim'
+
 " adding end after if, do, def and several other keywords
 Bundle 'tpope/vim-endwise'
 
@@ -72,6 +77,9 @@ Bundle 'wincent/Command-T'
 Bundle 'henrik/vim-qargs'
 " create missing directories on the fly
 Bundle 'dockyard/vim-easydir'
+
+" Rails I18n helpers
+Bundle 'stefanoverna/vim-i18n'
 
 " dependencies
 Bundle 'tsaleh/vim-matchit'

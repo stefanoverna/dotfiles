@@ -1,0 +1,29 @@
+url="http://www.translate.google.com/translate_a/t"
+langpair="${LANGPAIR:-it|en}"
+
+text="$@"
+
+if [ $# -ne 1 ]; then
+  read text
+fi
+
+hl="${langpair%%|*}"
+tl="${langpair##*|}"
+sl="$hl"
+
+query="client=t&hl=$hl&sl=$sl&tl=$tl&multires=1&otf=1&ssel=0&tsel=0&sc=1"
+
+# make request
+result=$(curl -s --data-urlencode "text=$text" "$url?$query" -H "User-Agent: Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1")
+
+# simple stupid parsing
+result="${result#*\"}"
+result="${result%%\"*}"
+
+if [ "$(command -v notify-send)" ]
+then
+  notify-send "$result"
+fi
+
+echo "$result"
+

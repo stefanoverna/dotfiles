@@ -83,13 +83,6 @@ function prompt_grb_scm_info() {
 }
 
 prompt_grb_setup() {
-    local verbose
-    if [[ $TERM == screen* ]] && [ -n "$STY" ]; then
-      verbose=
-    else
-      verbose=1
-    fi
-  
     typeset -A colorcode
     colorcode[black]=0
     colorcode[red]=1
@@ -162,10 +155,7 @@ prompt_grb_setup() {
   p_line="$pc[line]%y$pc[reset]"
 
   PROMPT=
-  if [ $verbose ]; then
-    PROMPT+="$pc[host]%m$pc[reset]"
-  fi
-  PROMPT+=":$pc[shortpath]%1~$pc[reset]"
+  PROMPT+="$pc[shortpath]%1~$pc[reset]"
   PROMPT+="($pc[scm_branch]\$(prompt_wunjo_scm_branch)$pc[reset])"
   PROMPT+=" $pc[#]\$$pc[reset] "
   export PROMPT RPROMPT

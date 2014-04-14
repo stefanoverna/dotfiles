@@ -13,4 +13,5 @@ public/system
 database.yml
 .plumber-pane
 bin/stubs/*
+node_modules/*
 

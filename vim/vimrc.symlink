@@ -323,7 +323,7 @@ endif
 set nojoinspaces
 
 " Saves current file and reloads current Chrome tab
-map <leader>z :w\|:silent !reload-chrome<cr>
+map <leader>z :w\|:silent !reload-chrome<cr>\|:redraw!<cr>
 
 " Promote variable to Rspec let
 function! PromoteToLet()
@@ -348,6 +348,16 @@ nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " reformat method call/function call/hash
 map <leader>b :ReformatCall<cr>
+
+" Move between tabs
+nnoremap tj :tabprev<cr>
+nnoremap tl :tabnext<cr>
+
+" Emmet: <C-e> + ,
+let g:user_emmet_leader_key = '<c-e>'
+
+" I18n
+vmap <Leader>z :call I18nTranslateString()<CR>
 
 " show buffer list as tabs
 " let g:airline#extensions#tabline#enabled = 1
