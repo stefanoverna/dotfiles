@@ -1,8 +1,93 @@
+" neobundle
+
+if has('vim_starting')
+  set nocompatible
+  set runtimepath+=/Users/stefanoverna/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#begin(expand('/Users/stefanoverna/.vim/bundle'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" 16 colors colorscheme, for a uniform terminal experience
+NeoBundle 'noahfrederick/vim-noctu'
+
+" syntaxes
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'vim-ruby/vim-ruby'
+
+" ruby stuff
+NeoBundle 'stefanoverna/vim-plumber'
+NeoBundle 'stefanoverna/vim-alternate'
+NeoBundle 'jgdavey/vim-blockle'
+NeoBundle 'stefanoverna/vim-reformat-call'
+
+" adding end after if, do, def and several other keywords
+NeoBundle 'tpope/vim-endwise'
+
+" Git (used with airline)
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
+
+" smart autocompletion
+NeoBundle 'ervandew/supertab'
+
+" snippets
+NeoBundle "MarcWeber/vim-addon-mw-utils"
+NeoBundle "tomtom/tlib_vim"
+NeoBundle "garbas/vim-snipmate"
+NeoBundle "stefanoverna/snipmate-snippets"
+
+" nice status line
+NeoBundle 'bling/vim-airline'
+" open files in specific line (eg. vim ~/foo.rb:12)
+NeoBundle 'bogado/file-line'
+" handy tmux-vim panes navigation
+NeoBundle 'christoomey/vim-tmux-navigator'
+" visual tab hints
+NeoBundle 'nathanaelkane/vim-indent-guides'
+" project drawer
+NeoBundle 'scrooloose/nerdtree'
+" smarter pasting
+NeoBundle 'sickill/vim-pasta'
+" %S
+NeoBundle 'tpope/vim-abolish'
+" Comment all the things
+NeoBundle 'tpope/vim-commentary'
+" cs"'
+NeoBundle 'tpope/vim-surround'
+" populate the argument list from the files in the quickfix list
+NeoBundle 'henrik/vim-qargs'
+" create missing directories on the fly
+NeoBundle 'dockyard/vim-easydir'
+
+" Rails I18n helpers
+NeoBundle 'stefanoverna/vim-i18n'
+
+" Menu
+NeoBundle 'Shougo/unite.vim'
+
+" dependencies
+NeoBundle 'Shougo/vimproc', {
+\ 'build' : {
+\     'mac' : 'make -f make_mac.mak',
+\    },
+\ }
+NeoBundle 'tmhedberg/matchit'
+NeoBundle 'kana/vim-textobj-user'
+
+call neobundle#end()
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
 " The set nocompatible setting makes vim behave in a more useful way (the default) than the vi-compatible manner.
 set nocompatible
-
-" Vundle
-source ~/.dotfiles/vim/vundlerc
 
 " Enable syntax highlighting
 syntax enable
@@ -121,19 +206,33 @@ noremap <Right> <nop>
 " == Ruby blocks ==
 runtime macros/matchit.vim
 
-" == Command-T ==
-nnoremap <silent> <Leader>l :CommandT<CR>
-let g:CommandTRefreshMap='<C-f>'
-let g:CommandTMaxHeight=20
-let g:CommandTMinHeight=5
+" leader-l for fuzzy search
+let g:unite_enable_start_insert = 1
+let g:unite_cursor_line_highlight = 'CursorLine'
+let g:unite_source_grep_search_word_highlight = 'Underlined'
+let g:unite_source_line_search_word_highlight = 'Underlined'
+
+let s:unite_ignores = [ '.git', 'log', 'node_modules', 'coverage' ]
+call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+  \ 'ignore_pattern', unite#get_all_sources('file_rec')['ignore_pattern'] .
+  \ join(s:unite_ignores, '\|'))
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_length'])
+
+nnoremap <silent> <leader>l :Unite -toggle -no-split -buffer-name=files file_rec/async:!<CR>
+
+" leader-f for The Silver Searcher
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts =
+\ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+\  '''log'' --ignore ''.git'' --ignore ''coverage'' --ignore ''node_modules'''
+let g:unite_source_grep_recursive_opt = ''
+nnoremap <silent> <leader>f :Unite -toggle -no-split -no-start-insert -auto-preview -truncate grep:.<cr>
 
 " == DestroyAllSoftware tips ==
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
-
-" leader-f for The Silver Searcher
-nnoremap <leader>f :Ag '
 
 " Open routes.rb
 noremap <leader>gr :topleft :split config/routes.rb<cr>
