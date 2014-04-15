@@ -443,7 +443,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 nnoremap <expr> vv '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " reformat method call/function call/hash
-map <leader>b :ReformatCall<cr>
+map <leader>u :ReformatCall<cr>
 
 " I18n
 vmap <Leader>z :call I18nTranslateString()<CR>
