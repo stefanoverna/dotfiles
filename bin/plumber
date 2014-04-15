@@ -1,10 +1,10 @@
 #!/bin/bash
 
-DEFAULT_PIPE_NAME=".plumber"
-PIPE_NAME="${1:-$DEFAULT_PIPE_NAME}"
+PIPE_PATH="${1:-.plumber}"
+PANE_PATH="${2:-.plumber-pane}"
 
-if [ ! -p $PIPE_NAME ]; then
-  mkfifo $PIPE_NAME
+if [ ! -p $PIPE_PATH ]; then
+  mkfifo $PIPE_PATH
 fi
 
 if [ -z "$TMUX" ]; then
@@ -24,10 +24,10 @@ function hr {
 
 # Save tmux pane name
 PANE_NAME=`tmux display-message -p '#S:#I.#P'`
-echo $PANE_NAME > .plumber-pane
+echo $PANE_NAME > $PANE_PATH
 
 while true; do
-  COMMAND=$(cat $PIPE_NAME)
+  COMMAND=$(cat $PIPE_PATH)
 
   if [ -n "$COMMAND" ]; then
     hr =

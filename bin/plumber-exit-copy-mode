@@ -1,13 +1,9 @@
 #!/bin/bash
 
-DEFAULT_PANE_FILE=".plumber-pane"
-PANE_FILE="${1:-$DEFAULT_PANE_FILE}"
+PIPE_PATH="${1:-.plumber}"
+PANE_PATH="${2:-.plumber-pane}"
 
-if [ ! -p $PIPE_FILE ]; then
-  exit
-fi
-
-PANE_NAME=$(cat $PANE_FILE)
+PANE_NAME=$(cat $PANE_PATH)
 
 # Exit copy mode
 tmux send-keys -t $PANE_NAME $'\e'

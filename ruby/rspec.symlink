@@ -1,1 +1,6 @@
 --color
+--require "~/.dotfiles/vim/rspec_formatter"
+--format progress
+--format VimFormatter
+--out tmp/quickfix
+

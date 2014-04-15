@@ -32,9 +32,6 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
 
-" smart autocompletion
-NeoBundle 'ervandew/supertab'
-
 " snippets
 NeoBundle "MarcWeber/vim-addon-mw-utils"
 NeoBundle "tomtom/tlib_vim"
@@ -164,24 +161,21 @@ set smartcase
 " in quickfix windows)
 nnoremap <expr> <CR> (&buftype is# "quickfix" ? "<cr>" : ":\<C-u>nohlsearch\n")
 
-" Treat vundlerc as a vim file
-au BufRead,BufNewFile vundlerc set ft=vim
-
 " Treat JSON files like JavaScript
 au BufNewFile,BufRead *.json set ft=javascript
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Podfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
-" Movefile is Yaml
-au BufRead,BufNewFile {Movefile} set ft=yaml
-
 " Cakefile is Yaml
 au BufRead,BufNewFile {Cakefile} set ft=coffee
 
 " Remember last location in file, but not for commit messages.
-" see :help last-position-jump
-au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+autocmd BufReadPost *
+  \ if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
 au Filetype gitcommit setlocal textwidth=72 colorcolumn=72
 
 " Automatically remove trailing spaces on some files (and fix tabs)
@@ -401,12 +395,15 @@ let g:airline_branch_prefix = '⎇  '
 let g:airline_paste_symbol = 'ρ'
 let g:airline_theme='badwolf'
 
+" Plumber
 let g:plumber_precommand = 'plumber-exit-copy-mode'
 
+" Git gutter
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
-let g:SuperTabMappingForward = '\'
+" autocomplete keyword with \
+inoremap <expr> \ '<C-n>'
 
 " Cursor shapes
 if exists("$TMUX")
@@ -443,17 +440,10 @@ vnoremap / /\v
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " select last paste in visual mode
-nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+nnoremap <expr> vv '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " reformat method call/function call/hash
 map <leader>b :ReformatCall<cr>
-
-" Move between tabs
-nnoremap tj :tabprev<cr>
-nnoremap tl :tabnext<cr>
-
-" Emmet: <C-e> + ,
-let g:user_emmet_leader_key = '<c-e>'
 
 " I18n
 vmap <Leader>z :call I18nTranslateString()<CR>
@@ -462,4 +452,45 @@ vmap <Leader>z :call I18nTranslateString()<CR>
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#buffer_nr_show = 1
 " let g:airline#extensions#tabline#buffer_nr_format = '%s: '
+
+" Test quickfix list management: If the tests write a tmp/quickfix file, these 
+" mappings will navigate through it
+
+function! GetBufferList()
+  redir =>buflist
+  silent! ls
+  redir END
+  return buflist
+endfunction
+
+function! BufferIsOpen(bufname)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      return 1
+    endif
+  endfor
+  return 0
+endfunction
+
+function! ToggleQuickfix()
+  if BufferIsOpen("Quickfix List")
+    cclose
+  else
+    call OpenQuickfix()
+  endif
+endfunction
+
+function! OpenQuickfix()
+  cgetfile tmp/quickfix
+  topleft cwindow
+  if &ft == "qf"
+      cc
+  endif
+endfunction
+
+nnoremap <leader>q :call ToggleQuickfix()<cr>
+nnoremap <leader>Q :cc<cr>
+nnoremap <leader>j :cnext<cr>
+nnoremap <leader>k :cprev<cr>
 
