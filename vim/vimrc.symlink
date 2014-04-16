@@ -210,6 +210,8 @@ let s:unite_ignores = [ '.git', 'log', 'node_modules', 'coverage' ]
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', unite#get_all_sources('file_rec')['ignore_pattern'] .
   \ join(s:unite_ignores, '\|'))
+let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --hidden --ignore ' .
+\  '''log'' --ignore ''.git'' --ignore ''coverage'' --ignore ''node_modules'' -g ""'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_length'])
 
@@ -493,4 +495,7 @@ nnoremap <leader>q :call ToggleQuickfix()<cr>
 nnoremap <leader>Q :cc<cr>
 nnoremap <leader>j :cnext<cr>
 nnoremap <leader>k :cprev<cr>
+
+" disable folding
+set foldlevelstart=20
 
