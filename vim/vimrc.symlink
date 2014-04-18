@@ -47,7 +47,7 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 " visual tab hints
 NeoBundle 'nathanaelkane/vim-indent-guides'
 " project drawer
-NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'tpope/vim-vinegar'
 " smarter pasting
 NeoBundle 'sickill/vim-pasta'
 " %S
@@ -277,25 +277,6 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 " == Prefills :edit command with the current dir ==
 map <leader>e :edit %%
 
-" == Close VIM if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-function! CustomTreeToggle()
-  if !exists("t:NERDTreeBufName") || bufwinnr(t:NERDTreeBufName) == -1
-    if strlen(expand("%:p")) > 0
-      exec ':NERDTreeFind'
-    else
-      exec ':NERDTree'
-    end
-  else
-    exec ':NERDTreeClose'
-  endif
-endfunction
-noremap <leader>d :call CustomTreeToggle()<cr>
-
-let NERDTreeHijackNetrw=1
-let NERDTreeShowHidden=1
-
 " == Mouse support
 " Send more characters for redraws
 set ttyfast
@@ -498,4 +479,32 @@ nnoremap <leader>k :cprev<cr>
 
 " disable folding
 set foldlevelstart=20
+
+" netrw config
+augroup netrcextended
+  autocmd!
+  autocmd FileType netrw call s:setup_netrw_extended()
+augroup END
+
+function! s:escaped(first, last) abort
+  let files = getline(a:first, a:last)
+  call filter(files, 'v:val !~# "^\" "')
+  call map(files, 'substitute(v:val, "[/*|@=]\\=\\%(\\t.*\\)\\=$", "", "")')
+  return join(map(files, 'fnamemodify(b:netrw_curdir."/".v:val,":~:.")'), ' ')
+endfunction
+
+function! s:setup_netrw_extended() abort
+  " o behaves like <cr>
+  nmap <buffer> o <cr>
+  " new file
+  nmap <buffer> <leader>n %
+  " new dir
+  nmap <buffer> <leader>N d
+  " delete
+  nmap <buffer> <leader>d D
+  " move
+  nmap <buffer> <leader>m R
+  " copy
+  nnoremap <buffer> <leader>c :<C-U>!cp <C-R>=<SID>escaped(line('.'), line('.') - 1 + v:count1)<CR> <C-R>=<SID>escaped(line('.'), line('.') - 1 + v:count1)<CR>
+endfunction
 
