@@ -4,10 +4,10 @@ require 'rspec/core/formatters/base_text_formatter'
 
 class VimFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
-  def example_failed example
+  def example_failed(example)
     exception = example.execution_result[:exception]
     path = $1 if exception.backtrace.find do |frame|
-      frame =~ %r{\b(spec/.*_spec\.rb:\d+)(?::|\z)}
+      frame =~ %r{\b(spec/.*\.rb:\d+)(?::|\z)}
     end
     if path
       message = format_message exception.message
@@ -25,7 +25,7 @@ class VimFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
 private
 
-  def format_message msg
+  def format_message(msg)
     msg.gsub("\n", ' ')[0,200]
   end
 end
