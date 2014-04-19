@@ -486,8 +486,10 @@ augroup netrcextended
   autocmd FileType netrw call s:setup_netrw_extended()
 augroup END
 
-function! s:escaped(first, last) abort
-  let files = getline(a:first, a:last)
+function! s:current_netrw_path() abort
+  let first = line('.')
+  let last = line('.') - 1 + v:count1
+  let files = getline(first, last)
   call filter(files, 'v:val !~# "^\" "')
   call map(files, 'substitute(v:val, "[/*|@=]\\=\\%(\\t.*\\)\\=$", "", "")')
   return join(map(files, 'fnamemodify(b:netrw_curdir."/".v:val,":~:.")'), ' ')
@@ -505,6 +507,11 @@ function! s:setup_netrw_extended() abort
   " move
   nmap <buffer> <leader>m R
   " copy
-  nnoremap <buffer> <leader>c :<C-U>!cp <C-R>=<SID>escaped(line('.'), line('.') - 1 + v:count1)<CR> <C-R>=<SID>escaped(line('.'), line('.') - 1 + v:count1)<CR>
+  nnoremap <buffer> <leader>c :<C-U>!cp <C-R>=<SID>current_netrw_path()<CR> <C-R>=<SID>current_netrw_path()<CR>
+  " quit returns to last file (and make it quick, removing other candidates)
+  nnoremap <buffer> q <C-o>
+  nunmap <buffer> qb
+  nunmap <buffer> qF
+  nunmap <buffer> qf
 endfunction
 
