@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+require 'optparse'
+
+opts = OptionParser.new do |opts|
+  opts.on('--about') do
+    puts "Finds trailing whitespace"
+    exit
+  end
+end
+opts.parse!
+
+EXTENSIONS = %w(sass scss rb coffee)
+TRAILING_WHITESPACE = /[ \t]+$/
+
+def offending_files
+  files = `git ls-files`.split.select do |path|
+    EXTENSIONS.include? File.extname(path)[1..-1]
+  end.select do |path|
+    File.read(path) =~ TRAILING_WHITESPACE
+  end
+end
+
+def colorize(text, color_code)
+  "\e[#{color_code}m#{text}\e[0m"
+end
+
+if offending_files.any?
+  puts colorize("The following files contain trailing whitespace:", 33)
+  puts offending_files.join("\n")
+  exit 1
+end
+
+# vi:syntax=ruby
+

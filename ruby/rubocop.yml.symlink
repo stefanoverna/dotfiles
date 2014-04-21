@@ -205,7 +205,7 @@ Tab:
 
 TrailingBlankLines:
   Description: 'Checks for superflous trailing blank lines.'
-  Enabled: true
+  Enabled: false
 
 TrailingWhitespace:
   Description: 'Avoid trailing whitespace.'

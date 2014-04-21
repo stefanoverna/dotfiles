@@ -1,5 +1,5 @@
 [commit]
-  template = ~/.git-commit-template
+  template = ~/.dotfiles/git/commit-template
 
 [alias]
   # add and remove all
@@ -76,4 +76,10 @@
 
 [merge]
   ff = only
+
+[init]
+  templatedir = ~/.dotfiles/git/template
+
+[hooks]
+  global = ~/.dotfiles/git/hooks
 
