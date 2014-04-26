@@ -33,9 +33,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
 
 " snippets
-NeoBundle "MarcWeber/vim-addon-mw-utils"
-NeoBundle "tomtom/tlib_vim"
-NeoBundle "garbas/vim-snipmate"
+NeoBundle "SirVer/ultisnips"
 NeoBundle "stefanoverna/snipmate-snippets"
 
 " nice status line
@@ -46,8 +44,6 @@ NeoBundle 'bogado/file-line'
 NeoBundle 'christoomey/vim-tmux-navigator'
 " visual tab hints
 NeoBundle 'nathanaelkane/vim-indent-guides'
-" project drawer
-NeoBundle 'tpope/vim-vinegar'
 " smarter pasting
 NeoBundle 'sickill/vim-pasta'
 " %S
@@ -58,8 +54,9 @@ NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-surround'
 " populate the argument list from the files in the quickfix list
 NeoBundle 'henrik/vim-qargs'
-" create missing directories on the fly
-NeoBundle 'dockyard/vim-easydir'
+
+" Project drawer
+NeoBundle 'scrooloose/nerdtree'
 
 " Rails I18n helpers
 NeoBundle 'stefanoverna/vim-i18n'
@@ -186,6 +183,16 @@ autocmd FileType slim set commentstring=\/\ %s
 
 " provide some context when editing
 set scrolloff=3
+
+function <SID>create_and_save_directory()
+  let s:directory = expand('<afile>:p:h')
+  if !isdirectory(s:directory)
+    call mkdir(s:directory, 'p')
+  endif
+endfunction
+
+" Automatically create parent directory on save if directory doesn't exist
+au BufWritePre,FileWritePre * call <SID>create_and_save_directory()
 
 set backupdir=~/.dotfiles/vim/_backup    " where to put backup files.
 set directory=~/.dotfiles/vim/_temp      " where to put swap files.
@@ -480,38 +487,17 @@ nnoremap <leader>k :cprev<cr>
 " disable folding
 set foldlevelstart=20
 
-" netrw config
-augroup netrcextended
-  autocmd!
-  autocmd FileType netrw call s:setup_netrw_extended()
-augroup END
+" snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-function! s:current_netrw_path() abort
-  let first = line('.')
-  let last = line('.') - 1 + v:count1
-  let files = getline(first, last)
-  call filter(files, 'v:val !~# "^\" "')
-  call map(files, 'substitute(v:val, "[/*|@=]\\=\\%(\\t.*\\)\\=$", "", "")')
-  return join(map(files, 'fnamemodify(b:netrw_curdir."/".v:val,":~:.")'), ' ')
-endfunction
+" Close VIM if the only window left open is a NERDTree
+au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-function! s:setup_netrw_extended() abort
-  " o behaves like <cr>
-  nmap <buffer> o <cr>
-  " new file
-  nmap <buffer> <leader>n %
-  " new dir
-  nmap <buffer> <leader>N d
-  " delete
-  nmap <buffer> <leader>d D
-  " move
-  nmap <buffer> <leader>m R
-  " copy
-  nnoremap <buffer> <leader>c :<C-U>!cp <C-R>=<SID>current_netrw_path()<CR> <C-R>=<SID>current_netrw_path()<CR>
-  " quit returns to last file (and make it quick, removing other candidates)
-  nnoremap <buffer> q <C-o>
-  nunmap <buffer> qb
-  nunmap <buffer> qF
-  nunmap <buffer> qf
-endfunction
+" NERDtree
+"
+nnoremap <leader>d :NERDTreeToggle<CR>
+let NERDTreeHijackNetrw=1
+let NERDTreeShowHidden=1
 
