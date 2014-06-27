@@ -18,6 +18,8 @@ NeoBundle 'slim-template/vim-slim'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'plasticboy/vim-markdown'
 
 " ruby stuff
 NeoBundle 'stefanoverna/vim-plumber'
@@ -344,7 +346,16 @@ nnoremap Y y$
 let NERDTreeIgnore=['node_modules/', 'stubs/', 'log/', '.DS_Store']
 
 " <leader>A runs all the specs
-nnoremap <silent> <leader>A :<C-U>w \| call Plumber("rspec spec")<CR>
+nnoremap <silent> <leader>A :<C-U>w \| call RunAllSpecs()<CR>
+
+function! RunAllSpecs()
+  let currentSyntax = &filetype
+  if currentSyntax == 'coffee' || currentSyntax == 'javascript'
+    call Plumber("karma run")
+  else
+    call Plumber("rspec spec")
+  endif
+endfunction
 
 " Convert hashrockets into new 1.9 hash syntax
 noremap <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
@@ -438,11 +449,6 @@ map <leader>u :ReformatCall<cr>
 " I18n
 vmap <Leader>z :call I18nTranslateString()<CR>
 
-" show buffer list as tabs
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 1
-" let g:airline#extensions#tabline#buffer_nr_format = '%s: '
-
 " Test quickfix list management: If the tests write a tmp/quickfix file, these 
 " mappings will navigate through it
 
@@ -500,4 +506,17 @@ au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType 
 nnoremap <leader>d :NERDTreeToggle<CR>
 let NERDTreeHijackNetrw=1
 let NERDTreeShowHidden=1
+
+function! CustomTreeToggle()
+  if !exists("t:NERDTreeBufName") || bufwinnr(t:NERDTreeBufName) == -1
+    if strlen(expand("%:p")) > 0
+      exec ':NERDTreeFind'
+    else
+      exec ':NERDTree'
+    end
+  else
+    exec ':NERDTreeClose'
+  endif
+endfunction
+noremap <leader>d :call CustomTreeToggle()<cr>
 
