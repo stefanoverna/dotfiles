@@ -17,8 +17,8 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'plasticboy/vim-markdown'
 
 " ruby stuff
@@ -157,7 +157,7 @@ set incsearch
 set ignorecase
 " ...unless they contain at least one capital letter
 set smartcase
-" clear the search buffer when hitting return (but preserve natural behaviour 
+" clear the search buffer when hitting return (but preserve natural behaviour
 " in quickfix windows)
 nnoremap <expr> <CR> (&buftype is# "quickfix" ? "<cr>" : ":\<C-u>nohlsearch\n")
 
@@ -434,7 +434,7 @@ map <leader>u :ReformatCall<cr>
 " I18n
 vmap <Leader>z :call I18nTranslateString()<CR>
 
-" Test quickfix list management: If the tests write a tmp/quickfix file, these 
+" Test quickfix list management: If the tests write a tmp/quickfix file, these
 " mappings will navigate through it
 
 function! GetBufferList()
