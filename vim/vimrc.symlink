@@ -63,8 +63,9 @@ NeoBundle 'scrooloose/nerdtree'
 " Rails I18n helpers
 NeoBundle 'stefanoverna/vim-i18n'
 
-" Menu
-NeoBundle 'Shougo/unite.vim'
+" Fuzzy file search
+NeoBundle 'wincent/Command-T'
+NeoBundle 'rking/ag.vim'
 
 " dependencies
 NeoBundle 'Shougo/vimproc', {
@@ -209,30 +210,14 @@ noremap <Right> <nop>
 " == Ruby blocks ==
 runtime macros/matchit.vim
 
-" leader-l for fuzzy search
-let g:unite_enable_start_insert = 1
-let g:unite_cursor_line_highlight = 'CursorLine'
-let g:unite_source_grep_search_word_highlight = 'Underlined'
-let g:unite_source_line_search_word_highlight = 'Underlined'
-
-let s:unite_ignores = [ '.git/', 'log/', 'node_modules/', 'coverage/' ]
-call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-  \ 'ignore_pattern', unite#get_all_sources('file_rec')['ignore_pattern'] .
-  \ join(s:unite_ignores, '\|'))
-let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --hidden --ignore ' .
-\  '''/log'' --ignore ''.git'' --ignore ''coverage'' --ignore ''node_modules'' -g ""'
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_length'])
-
-nnoremap <silent> <leader>l :Unite -toggle -no-split -buffer-name=files file_rec/async:!<CR>
-
 " leader-f for The Silver Searcher
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts =
-\ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
-\  '''/log'' --ignore ''.git'' --ignore ''coverage'' --ignore ''node_modules'''
-let g:unite_source_grep_recursive_opt = ''
-nnoremap <silent> <leader>f :Unite -toggle -no-split -no-start-insert -auto-preview -truncate grep:.<cr>
+nnoremap <leader>f :Ag '
+
+" == Command-T ==
+nnoremap <silent> <Leader>l :CommandT<CR>
+let g:CommandTRefreshMap='<C-r>'
+let g:CommandTMaxHeight=20
+let g:CommandTMinHeight=5
 
 " == DestroyAllSoftware tips ==
 
