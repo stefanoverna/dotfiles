@@ -2,6 +2,9 @@
   template = ~/.dotfiles/git/commit-template
 
 [alias]
+  # unstage
+  unstage = reset HEAD
+
   # add and remove all
   add-remove-all = add -A .
 
@@ -75,7 +78,7 @@
   default = simple
 
 [merge]
-  ff = only
+  ; ff = only
 
 [init]
   templatedir = ~/.dotfiles/git/template

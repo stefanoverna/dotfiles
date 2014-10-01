@@ -1,29 +1,26 @@
-# Adapted from https://github.com/bronson/vim-runtest/blob/master/rspec_formatter.rb.
-
 require 'rspec/core/formatters/base_text_formatter'
 
 class VimFormatter < RSpec::Core::Formatters::BaseTextFormatter
+  RSpec::Core::Formatters.register self, :example_failed
 
-  def example_failed(example)
-    exception = example.execution_result[:exception]
-    path = $1 if exception.backtrace.find do |frame|
-      frame =~ %r{\b(spec/.*\.rb:\d+)(?::|\z)}
-    end
-    if path
-      message = format_message exception.message
-      path    = format_caller path
-      output.puts "#{path}: #{message.strip}" if path
-    end
+  def initialize(output)
+    @output = output
   end
 
-  def example_pending *args;  end
-  def dump_failures *args; end
-  def dump_pending *args; end
-  def message msg; end
-  def dump_summary *args; end
-  def seed *args; end
+  def example_failed(example)
 
-private
+    exception = example.exception
+    path = Regexp.last_match[1] if exception.backtrace.find do |frame|
+      frame =~ %r{\b(spec/.*_spec\.rb:\d+)(?::|\z)}
+    end
+
+    message = format_message exception.message
+
+    @output.puts "#{path}: #{example_group.description.strip} " +
+      "#{example.description.strip}: #{message.strip}" if path
+  end
+
+  private
 
   def format_message(msg)
     msg.gsub("\n", ' ')[0,200]
