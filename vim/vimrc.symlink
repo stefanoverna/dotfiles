@@ -93,7 +93,7 @@ syntax enable
 set wildmenu
 " Complete till longest common string, and open suggestions menu
 set wildmode=longest:full
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,*/tmp/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.sass-cache/*,*/tmp/*,*/node_modules/*
 
 " Default charset encoding.
 set encoding=utf-8
