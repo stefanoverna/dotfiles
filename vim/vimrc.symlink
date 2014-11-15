@@ -67,6 +67,7 @@ NeoBundle 'stefanoverna/vim-i18n'
 " Fuzzy file search
 NeoBundle 'wincent/Command-T'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'haya14busa/incsearch.vim'
 
 " dependencies
 NeoBundle 'Shougo/vimproc', {
@@ -419,10 +420,6 @@ endfunction
 command! PromoteToLet :call PromoteToLet()
 map <leader>p :PromoteToLet<cr>
 
-" I CAN HAZ NORMAL REGEXES?
-nnoremap / /\v
-vnoremap / /\v
-
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
@@ -505,4 +502,12 @@ function! CustomTreeToggle()
   endif
 endfunction
 noremap <leader>d :call CustomTreeToggle()<cr>
+
+" Improved incremental search
+
+let g:incsearch#magic = '\v'
+
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
