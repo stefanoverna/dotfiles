@@ -1,0 +1,19 @@
+set main-view = line-number:no id:yes date:no author:yes commit-title:yes,graph,refs,overflow=no
+set vertical-split = yes
+set diff-context = 6
+
+set line-graphics = utf-8
+set refresh-mode = auto
+
+bind generic g move-first-line
+bind generic G move-last-line
+bind generic o enter
+bind generic <C-r> screen-redraw
+
+bind main x ?git branch -D %(branch)
+bind main X ?git push --delete %(remote) %(branch)
+bind main F !git fetch --prune
+bind main U !git reset --soft %(commit)
+bind main P !git push -f origin %(branch)
+bind main I !git rebase -i %(commit)
+

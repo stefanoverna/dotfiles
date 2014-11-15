@@ -49,6 +49,8 @@ alias gs='git status-diff'
 alias gst='git status'
 alias gd='git diff --ignore-space-at-eol -b -w --ignore-blank-lines'
 
+alias gitx='tig --all'
+
 function gbd() {
   git diff --ignore-space-at-eol -b -w --ignore-blank-lines $(git merge-base $1 HEAD) $1
 }
