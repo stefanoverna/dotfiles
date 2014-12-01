@@ -10,6 +10,7 @@ bind 'C-x' send-prefix
 # needed for pbcopy/vim's * register to work inside of tmux
 set-option -g default-command "reattach-to-user-namespace -l zsh"
 
+
 # Reload tmux config so we can pick up changes to this file without needing to restart tmux
 bind r source-file ~/.tmux.conf \; display "Reloaded tmux configuration!"
 
@@ -65,8 +66,8 @@ setw -g mode-keys vi
 # understand that a horizontal split means the pane should be split down the
 # middle horizontally, and likewise for a vertical split).
 unbind x
-bind v split-window -h
-bind x split-window -v
+bind v split-window -h -c "#{pane_current_path}"
+bind x split-window -v -c "#{pane_current_path}"
 
 # Navigate panes vim-style!
 bind h select-pane -L
