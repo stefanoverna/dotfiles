@@ -21,6 +21,7 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'mxw/vim-jsx'
 
 " ruby stuff
 NeoBundle 'stefanoverna/vim-plumber'
@@ -38,6 +39,9 @@ NeoBundle 'airblade/vim-gitgutter'
 " snippets
 NeoBundle "SirVer/ultisnips"
 NeoBundle "stefanoverna/snipmate-snippets"
+
+" alignment
+NeoBundle 'junegunn/vim-easy-align'
 
 " nice status line
 NeoBundle 'bling/vim-airline'
@@ -338,7 +342,7 @@ nnoremap <silent> <leader>A :<C-U>w \| call RunAllSpecs()<CR>
 function! RunAllSpecs()
   let currentSyntax = &filetype
   if currentSyntax == 'coffee' || currentSyntax == 'javascript'
-    call Plumber("karma run")
+    call Plumber("mocha test/unit")
   else
     call Plumber("rspec spec")
   endif
@@ -510,4 +514,13 @@ let g:incsearch#magic = '\v'
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" RJS Syntax also on .js files
+let g:jsx_ext_required = 0
 
