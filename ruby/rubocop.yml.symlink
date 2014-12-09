@@ -38,12 +38,6 @@ DefWithParentheses:
   Description: 'Use def with parentheses when there are arguments.'
   Enabled: true
 
-DefWithoutParentheses:
-  Description: >
-                 Omit the parentheses when the method doesn't accept
-                 any arguments.
-  Enabled: true
-
 DotPosition:
   Description: 'Checks the position of the dot in multi-line method calls.'
   Style: 'leading'

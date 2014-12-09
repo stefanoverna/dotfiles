@@ -342,7 +342,7 @@ nnoremap <silent> <leader>A :<C-U>w \| call RunAllSpecs()<CR>
 function! RunAllSpecs()
   let currentSyntax = &filetype
   if currentSyntax == 'coffee' || currentSyntax == 'javascript'
-    call Plumber("mocha test/unit")
+    call Plumber("mocha test/**/*.js")
   else
     call Plumber("rspec spec")
   endif
@@ -353,16 +353,6 @@ noremap <leader>rr :%s/:\(\w\+\)\s*=>/\1:/ge<CR><C-o>
 
 " Remove trailing spaces
 noremap <leader>ss :%s/\s\+$//e<CR><C-o>
-
-function! AddTrailingNewLine()
-  " \%$ -> end of file
-  %s/[\r\n]*\%$/\r/
-  exec "silent! normal! \<c-o>"
-endfunction
-
-" POSIX says a line is a sequence of zero or more non-newline characters plus
-" a terminating newline character
-autocmd BufWritePre * :call AddTrailingNewLine()
 
 cmap w!! w !sudo tee %
 command! KillControlM :normal :%s/<C-V><C-M>//e<CR><C-O><CR>
