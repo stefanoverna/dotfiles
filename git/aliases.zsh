@@ -7,7 +7,7 @@ alias gl='git pull'
 alias gup='git pull-rebase'
 alias gm='git merge'
 
-alias ga='git add'
+alias ga='git add -u'
 alias gaa='git add-remove-all'
 alias gap='git add-interactive'
 
