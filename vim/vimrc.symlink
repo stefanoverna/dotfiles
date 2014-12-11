@@ -514,3 +514,12 @@ nmap ga <Plug>(EasyAlign)
 " RJS Syntax also on .js files
 let g:jsx_ext_required = 0
 
+function! RemoveTrailingNewLines()
+  " \%$ -> end of file
+  %s/[\r\n]*\%$//
+endfunction
+
+" POSIX says a line is a sequence of zero or more non-newline characters plus
+" a terminating newline character
+autocmd BufWritePre * :call RemoveTrailingNewLines()
+
