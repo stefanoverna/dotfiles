@@ -516,4 +516,4 @@ let g:jsx_ext_required = 0
 
 " POSIX says a line is a sequence of zero or more non-newline characters plus
 " a terminating newline character
-autocmd BufWritePre * %s/[\r\n]*\%$//
+" autocmd BufWritePre * %s/[\r\n]*\%$//
