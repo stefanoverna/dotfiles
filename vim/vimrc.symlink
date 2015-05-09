@@ -1,3 +1,7 @@
+if has('nvim')
+  runtime! plugin/python_setup.vim
+endif
+
 " neobundle
 
 if has('vim_starting')
@@ -22,6 +26,7 @@ NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'mxw/vim-jsx'
+NeoBundle 'elzr/vim-json'
 
 " ruby stuff
 NeoBundle 'stefanoverna/vim-plumber'
@@ -69,7 +74,6 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'stefanoverna/vim-i18n'
 
 " Fuzzy file search
-NeoBundle 'wincent/Command-T'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'haya14busa/incsearch.vim'
 
@@ -167,9 +171,6 @@ set smartcase
 " in quickfix windows)
 nnoremap <expr> <CR> (&buftype is# "quickfix" ? "<cr>" : ":\<C-u>nohlsearch\n")
 
-" Treat JSON files like JavaScript
-au BufNewFile,BufRead *.json set ft=javascript
-
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Podfile,Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
@@ -218,12 +219,6 @@ runtime macros/matchit.vim
 
 " leader-f for The Silver Searcher
 nnoremap <leader>f :Ag '
-
-" == Command-T ==
-nnoremap <silent> <Leader>l :CommandT<CR>
-let g:CommandTRefreshMap='<C-r>'
-let g:CommandTMaxHeight=20
-let g:CommandTMinHeight=5
 
 " == DestroyAllSoftware tips ==
 
@@ -517,3 +512,25 @@ let g:jsx_ext_required = 0
 " Frontmatter
 let g:vim_markdown_frontmatter=1
 autocmd BufRead,BufNewFile *.md setlocal spell spelllang=it_it
+
+" Disable json concealing
+let g:vim_json_syntax_conceal = 0
+
+" Run a given vim command on the results of fuzzy selecting from a given shell
+" command. See usage below.
+function! SelectaCommand(choice_command, selecta_args, vim_command)
+  try
+    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+  catch /Vim:Interrupt/
+    " Swallow the ^C so that the redraw below happens; otherwise there will be
+    " leftovers from selecta on the screen
+    redraw!
+    return
+  endtry
+  redraw!
+  exec a:vim_command . " " . selection
+endfunction
+
+" Find all files in all non-dot directories starting in the working directory.
+" Fuzzy select one of those. Open the selected file with :e.
+nnoremap <leader>l :call SelectaCommand("git ls-files", "", ":e")<cr>
