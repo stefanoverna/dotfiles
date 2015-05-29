@@ -57,7 +57,7 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 " visual tab hints
 NeoBundle 'nathanaelkane/vim-indent-guides'
 " smarter pasting
-NeoBundle 'sickill/vim-pasta'
+NeoBundle 'svermeulen/vim-easyclip'
 " %S
 NeoBundle 'tpope/vim-abolish'
 " Comment all the things
@@ -85,6 +85,8 @@ NeoBundle 'Shougo/vimproc', {
 \ }
 NeoBundle 'tmhedberg/matchit'
 NeoBundle 'kana/vim-textobj-user'
+" required by vim-easyclip
+NeoBundle 'tpope/vim-repeat'
 
 call neobundle#end()
 filetype plugin indent on
@@ -516,3 +518,6 @@ let g:vim_json_syntax_conceal = 0
 " fzf
 set rtp+=/usr/local/Cellar/fzf/HEAD
 nnoremap <leader>l :FZF<CR>
+
+" reindent while pasting
+let g:EasyClipAutoFormat = 1
