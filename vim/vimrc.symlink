@@ -277,9 +277,6 @@ map <leader>e :edit %%
 set ttyfast
 " Enable mouse use in all modes
 set mouse=a
-" Set this to the name of your terminal that supports mouse codes.
-" Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
-set ttymouse=xterm2
 
 " == Disable F1 opening help
 nnoremap <F1> :echo<CR>
@@ -516,21 +513,6 @@ autocmd BufRead,BufNewFile *.md setlocal spell spelllang=it_it
 " Disable json concealing
 let g:vim_json_syntax_conceal = 0
 
-" Run a given vim command on the results of fuzzy selecting from a given shell
-" command. See usage below.
-function! SelectaCommand(choice_command, selecta_args, vim_command)
-  try
-    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-  catch /Vim:Interrupt/
-    " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
-    redraw!
-    return
-  endtry
-  redraw!
-  exec a:vim_command . " " . selection
-endfunction
-
-" Find all files in all non-dot directories starting in the working directory.
-" Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>l :call SelectaCommand("cat <(git ls-files) <(git ls-files --exclude-standard -o)", "", ":e")<cr>
+" fzf
+set rtp+=/usr/local/Cellar/fzf/HEAD
+nnoremap <leader>l :FZF<CR>

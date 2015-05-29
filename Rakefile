@@ -32,6 +32,8 @@ task :install do
     end
     `ln -s "$PWD/#{linkable}" "#{target}"`
   end
+
+  `ln -s "$PWD/vim/vimrc.symlink" "$HOME/.nvimrc"`
 end
 
 task :uninstall do
