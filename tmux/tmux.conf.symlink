@@ -143,9 +143,6 @@ bind -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"
 bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"
 bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 
-
-bind F5 run-shell 'tmux-compact'\; display "Compact!"
-
 set -g default-terminal "xterm-256color"
 
 set-option -g history-limit 10000
