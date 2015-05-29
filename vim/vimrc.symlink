@@ -533,4 +533,4 @@ endfunction
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>l :call SelectaCommand("git ls-files", "", ":e")<cr>
+nnoremap <leader>l :call SelectaCommand("cat <(git ls-files) <(git ls-files --exclude-standard -o)", "", ":e")<cr>
