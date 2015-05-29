@@ -24,7 +24,7 @@ set -sg escape-time 1
 set -sg repeat-time 1000
 
 # Clean screen
-bind -n C-p send-keys -R \; clear-history \; display "clean!"
+bind C-p send-keys -R \; clear-history \; display "Clean!"
 
 # Rate limiting
 set -sg c0-change-trigger 20
