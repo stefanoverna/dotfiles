@@ -417,9 +417,6 @@ nnoremap <expr> vv '`[' . strpart(getregtype(), 0, 1) . '`]'
 " reformat method call/function call/hash
 map <leader>u :ReformatCall<cr>
 
-" I18n
-vmap <Leader>z :call I18nTranslateString()<CR>
-
 " Test quickfix list management: If the tests write a tmp/quickfix file, these
 " mappings will navigate through it
 
@@ -521,3 +518,10 @@ nnoremap <leader>l :FZF<CR>
 
 " reindent while pasting
 let g:EasyClipAutoFormat = 1
+
+" Find all files in all non-dot directories starting in the working directory.
+" Fuzzy select one of those. Open the selected file with :e.
+nnoremap <leader>l :call SelectaCommand("git ls-files", "", ":e")<cr>
+
+vmap <Leader>z :call I18nTranslateString()<CR>
+vmap <Leader>w :call I18nDisplayTranslation()<CR>
