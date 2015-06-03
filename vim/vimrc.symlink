@@ -70,9 +70,6 @@ NeoBundle 'henrik/vim-qargs'
 " Project drawer
 NeoBundle 'scrooloose/nerdtree'
 
-" Rails I18n helpers
-NeoBundle 'stefanoverna/vim-i18n'
-
 " Fuzzy file search
 NeoBundle 'rking/ag.vim'
 NeoBundle 'haya14busa/incsearch.vim'
@@ -360,15 +357,7 @@ set splitright
 set laststatus=2
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_enable_syntastic = 0
-let g:airline_enable_bufferline = 0
-let g:airline_enable_branch = 1
-
-let g:airline_linecolumn_prefix = '␊ '
-let g:airline_linecolumn_prefix = '␤ '
-let g:airline_linecolumn_prefix = '¶ '
-let g:airline_branch_prefix = '⎇  '
-let g:airline_paste_symbol = 'ρ'
+let g:airline#extensions#bufferline#enabled = 0
 let g:airline_theme='badwolf'
 
 " Plumber
@@ -518,10 +507,3 @@ nnoremap <leader>l :FZF<CR>
 
 " reindent while pasting
 let g:EasyClipAutoFormat = 1
-
-" Find all files in all non-dot directories starting in the working directory.
-" Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>l :call SelectaCommand("git ls-files", "", ":e")<cr>
-
-vmap <Leader>z :call I18nTranslateString()<CR>
-vmap <Leader>w :call I18nDisplayTranslation()<CR>
