@@ -324,6 +324,7 @@ nnoremap <leader>x :execute "split " . bufname("#")<CR>
 
 " y u no consistent?
 nnoremap Y y$
+nmap M m$
 
 let NERDTreeIgnore=['node_modules/', 'stubs/', 'log/', '.DS_Store']
 
