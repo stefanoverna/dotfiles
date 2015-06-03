@@ -96,7 +96,7 @@ bind-key j command-prompt -p "window to join as pane:"  "join-pane -s ':%%'"
 
 # Colors
 
-# Ensure we're using 256 colors
+# Ensure we're using 256 colors (the same setting should be on iTerm)
 set -g default-terminal "screen-256color"
 
 # Status bar
