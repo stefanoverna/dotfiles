@@ -10,7 +10,6 @@ tmp/**/*
 public/system
 .powder
 .rvmrc
-database.yml
 .plumber-pane
 bin/stubs/*
 node_modules/*

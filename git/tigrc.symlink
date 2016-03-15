@@ -1,4 +1,4 @@
-set main-view = line-number:no id:yes date:no author:yes commit-title:yes,graph,refs,overflow=no
+set main-view = line-number:no id:yes date:yes author:yes commit-title:yes,graph,refs,overflow=no
 set vertical-split = yes
 set diff-context = 6
 
