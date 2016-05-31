@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+file_path = ARGV.shift
+code = File.read(file_path)
+
+code = code.gsub(/@import ['"]([^'"]+)['"]/) do
+  path = $1
+  if path =~ /\*/
+    "\n// import #{path}\n// endimport\n"
+  else
+    "@import \"#{path}\""
+  end
+end
+
+code = code.gsub(/\/\/ import ([^\n]+)\n.*?\/\/ endimport\n/m) do
+  path = $1
+
+  text = "// import #{path}\n"
+
+  complete_path = File.join(File.dirname(file_path), path)
+  root_pathname = Pathname.new File.dirname(file_path)
+
+  Dir.glob(complete_path).each do |file|
+    file_pathname = Pathname.new(file)
+    path = file_pathname.relative_path_from(root_pathname)
+    text << "@import \"#{path}\"\n"
+  end
+
+  text << "// endimport\n"
+  text
+end
+
+File.open(file_path, "w") do |file|
+  file.write code
+end

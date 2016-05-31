@@ -498,7 +498,10 @@ let g:jsx_ext_required = 0
 
 " Frontmatter
 let g:vim_markdown_frontmatter=1
-autocmd BufRead,BufNewFile *.md setlocal spell spelllang=it_it
+autocmd FileType mkd setlocal spell spelllang=en_en
+autocmd FileType mkd setlocal wrap
+autocmd FileType mkd setlocal linebreak
+autocmd FileType mkd setlocal nolist
 
 " Disable json concealing
 let g:vim_json_syntax_conceal = 0
