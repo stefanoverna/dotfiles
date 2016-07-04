@@ -86,6 +86,8 @@ NeoBundle 'kana/vim-textobj-user'
 " required by vim-easyclip
 NeoBundle 'tpope/vim-repeat'
 
+NeoBundle 'alvan/vim-closetag'
+
 call neobundle#end()
 filetype plugin indent on
 

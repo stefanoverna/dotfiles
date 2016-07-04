@@ -3,7 +3,7 @@
 require 'pathname'
 
 file_path = ARGV.shift
-code = File.read(file_path)
+code = STDIN.read
 
 code = code.gsub(/@import ['"]([^'"]+)['"]/) do
   path = $1
@@ -25,13 +25,11 @@ code = code.gsub(/\/\/ import ([^\n]+)\n.*?\/\/ endimport\n/m) do
   Dir.glob(complete_path).each do |file|
     file_pathname = Pathname.new(file)
     path = file_pathname.relative_path_from(root_pathname)
-    text << "@import \"#{path}\"\n"
+    text << "@import \"#{File.dirname(path)}/#{File.basename(path, ".sass")}\"\n"
   end
 
   text << "// endimport\n"
   text
 end
 
-File.open(file_path, "w") do |file|
-  file.write code
-end
+puts code
