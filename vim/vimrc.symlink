@@ -27,6 +27,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'elzr/vim-json'
+NeoBundle 'elixir-lang/vim-elixir'
 
 " ruby stuff
 NeoBundle 'stefanoverna/vim-plumber'

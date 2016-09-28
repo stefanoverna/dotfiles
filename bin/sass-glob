@@ -22,7 +22,7 @@ code = code.gsub(/\/\/ import ([^\n]+)\n.*?\/\/ endimport\n/m) do
   complete_path = File.join(File.dirname(file_path), path)
   root_pathname = Pathname.new File.dirname(file_path)
 
-  Dir.glob(complete_path).each do |file|
+  Dir.glob(complete_path).select { |fn| File.file?(fn) }.each do |file|
     file_pathname = Pathname.new(file)
     path = file_pathname.relative_path_from(root_pathname)
     text << "@import \"#{File.dirname(path)}/#{File.basename(path, ".sass")}\"\n"
