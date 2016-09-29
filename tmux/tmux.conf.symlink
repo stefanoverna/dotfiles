@@ -26,10 +26,6 @@ set -sg repeat-time 1000
 # Clean screen
 bind C-p send-keys -R \; clear-history \; display "Clean!"
 
-# Rate limiting
-set -sg c0-change-trigger 20
-set -sg c0-change-interval 250
-
 # Copy and paste vim style
 unbind [
 bind Escape copy-mode
@@ -46,13 +42,6 @@ bind-key -t vi-copy Escape cancel
 # Update default binding of `Enter` to also use copy-pipe
 unbind -t vi-copy Enter
 bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
-
-# Mouse Support
-
-setw -g mode-mouse off
-set -g mouse-resize-pane on
-set -g mouse-select-pane on
-set -g mouse-select-window on
 
 # Scrollback Navigation
 
@@ -120,11 +109,11 @@ set -g message-bg black
 set -g message-attr bright
 
 # Status Bar Items
-set -g status-utf8 on
 set -g status-left ''
-set -g status-right "[#S:#I] #(tmux-mem-cpu-load 5 7)#[default]"
-set -g status-right-length 60
 set -g status-justify left
+set -g status-interval 2
+set -g status-right "#S #[fg=green,bg=black]#(tmux-mem-cpu-load --colors --interval 2)#[default]"
+set -g status-right-length 60
 
 setw -g window-status-format "[#I #W]"
 setw -g window-status-current-format "[#I #W]"

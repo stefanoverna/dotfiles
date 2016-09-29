@@ -43,7 +43,9 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
 
 " snippets
-NeoBundle "SirVer/ultisnips"
+NeoBundle "MarcWeber/vim-addon-mw-utils"
+NeoBundle "tomtom/tlib_vim"
+NeoBundle "garbas/vim-snipmate"
 NeoBundle "stefanoverna/snipmate-snippets"
 NeoBundle "stefanoverna/vim-i18n"
 
@@ -363,7 +365,6 @@ set laststatus=2
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline#extensions#bufferline#enabled = 0
-let g:airline_theme='badwolf'
 
 " Plumber
 let g:plumber_precommand = 'plumber-exit-copy-mode'
