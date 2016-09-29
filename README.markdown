@@ -4,7 +4,7 @@
 
 - `git clone git://github.com/stefanoverna/dotfiles ~/.dotfiles`
 - `cd ~/.dotfiles`
-- `brew bundle Brewfile`
+- `brew bundle`
 - `rake install`
 
 The install rake task will symlink the appropriate files in `.dotfiles` to your

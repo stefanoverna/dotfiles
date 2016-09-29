@@ -1,5 +1,24 @@
-install elasticsearch git htop-osx imagemagick most postgresql qt rbenv
-install reattach-to-user-namespace redis ruby-build the_silver_searcher
-install tig tmux tmux-mem-cpu-load neovim wget zsh zsh-syntax-highlighting
-install --HEAD fzf
+cask_args appdir: '/Applications'
+tap 'caskroom/cask'
 
+cask 'java'
+
+brew 'elasticsearch'
+brew 'git'
+brew 'htop-osx'
+brew 'imagemagick'
+brew 'most'
+brew 'postgresql'
+brew 'qt'
+brew 'rbenv'
+brew 'reattach-to-user-namespace'
+brew 'redis'
+brew 'ruby-build'
+brew 'the_silver_searcher'
+brew 'tig'
+brew 'tmux'
+brew 'tmux-mem-cpu-load'
+brew 'vim'
+brew 'wget'
+brew 'zsh'
+brew 'zsh-syntax-highlighting'
