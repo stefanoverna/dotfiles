@@ -514,7 +514,7 @@ let g:vim_json_syntax_conceal = 0
 autocmd BufNewFile,BufRead *.es6 set ft=javascript
 
 " fzf
-set rtp+=/usr/local/Cellar/fzf/HEAD
+set rtp+=/usr/local/opt/fzf
 nnoremap <leader>l :FZF<CR>
 
 " reindent while pasting
