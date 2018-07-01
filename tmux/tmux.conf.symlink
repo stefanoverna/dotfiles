@@ -67,6 +67,12 @@ bind l select-pane -R
 bind -r C-l select-window -t :+
 bind -r C-h select-window -t :-
 
+# And in copy mode too!
+bind-key -T copy-mode-vi C-h select-pane -L
+bind-key -T copy-mode-vi C-j select-pane -D
+bind-key -T copy-mode-vi C-k select-pane -U
+bind-key -T copy-mode-vi C-l select-pane -R
+
 # Quickly jump between two windows
 bind i last-window
 
