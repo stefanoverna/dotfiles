@@ -13,4 +13,4 @@ public/system
 .plumber-pane
 bin/stubs/*
 node_modules/*
-
+yarn-error.log

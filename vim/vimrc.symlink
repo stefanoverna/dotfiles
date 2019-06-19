@@ -25,9 +25,13 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'mxw/vim-jsx'
+NeoBundle 'chemzqm/vim-jsx-improve'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'elixir-lang/vim-elixir'
+NeoBundle 'posva/vim-vue'
+NeoBundle 'fgsch/vim-varnish'
+NeoBundle 'nikvdp/ejs-syntax'
+NeoBundle 'mattn/emmet-vim'
 
 " ruby stuff
 NeoBundle 'stefanoverna/vim-plumber'
@@ -47,7 +51,6 @@ NeoBundle "MarcWeber/vim-addon-mw-utils"
 NeoBundle "tomtom/tlib_vim"
 NeoBundle "garbas/vim-snipmate"
 NeoBundle "stefanoverna/snipmate-snippets"
-NeoBundle "stefanoverna/vim-i18n"
 
 " alignment
 NeoBundle 'junegunn/vim-easy-align'
@@ -77,6 +80,9 @@ NeoBundle 'scrooloose/nerdtree'
 " Fuzzy file search
 NeoBundle 'rking/ag.vim'
 NeoBundle 'haya14busa/incsearch.vim'
+
+" JS Lint
+NeoBundle 'w0rp/ale'
 
 " dependencies
 NeoBundle 'Shougo/vimproc', {
@@ -520,5 +526,18 @@ nnoremap <leader>l :FZF<CR>
 " reindent while pasting
 let g:EasyClipAutoFormat = 1
 
-vmap <Leader>z :call I18nTranslateString()<CR>
-vmap <Leader>dt :call I18nDisplayTranslation()<CR>
+" jsx
+
+let g:user_emmet_leader_key='<Ctrl>'
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
+
+" ALE
+"
+let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
+nnoremap <leader>z :ALEFix<CR>
+let g:airline#extensions#ale#enabled = 1
+nnoremap <leader>n :ALENext<CR>

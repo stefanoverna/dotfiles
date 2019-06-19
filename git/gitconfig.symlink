@@ -38,8 +38,8 @@
   stop-local-ignore = update-index --no-assume-unchanged
 
 [user]
-  name = Stefano Verna
-  email = s.verna@cantierecreativo.net
+	name = Stefano Verna
+	email = s.verna@datocms.com
 
 [color]
   ui = auto
@@ -81,8 +81,8 @@
   ; ff = only
 
 [init]
-  templatedir = ~/.dotfiles/git/template
-
-[hooks]
-  global = ~/.dotfiles/git/hooks
-
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
