@@ -82,7 +82,7 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'haya14busa/incsearch.vim'
 
 " JS Lint
-NeoBundle 'w0rp/ale'
+" NeoBundle 'w0rp/ale'
 
 " dependencies
 NeoBundle 'Shougo/vimproc', {
