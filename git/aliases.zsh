@@ -12,6 +12,7 @@ alias gaa='git add-remove-all'
 alias gap='git add-interactive'
 
 alias gp='git push'
+alias gpf='git push --force-with-lease'
 
 alias gc='git commit -v'
 alias gc!='git commit --amend -v --date="$(date)"'
@@ -29,7 +30,6 @@ alias grmv='git remote rename'
 alias grrm='git remote remove'
 alias grset='git remote set-url'
 alias grup='git remote update'
-
 alias grb='git rebase'
 alias grbi='git rebase-interactive'
 alias grbc='git rebase --continue'
@@ -49,7 +49,7 @@ alias gs='git status-diff'
 alias gst='git status'
 alias gd='git diff --ignore-space-at-eol -b -w --ignore-blank-lines'
 
-alias gitx='tig --all'
+alias gitx='fork'
 
 function gbd() {
   git diff --ignore-space-at-eol -b -w --ignore-blank-lines $(git merge-base $1 HEAD) $1

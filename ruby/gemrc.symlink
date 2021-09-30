@@ -13,4 +13,4 @@
 :backtrace: false
 
 # do not generate documentation for gems
-gem: --no-ri --no-rdoc
+gem: --no-ri --no-rdoc --no-document
