@@ -3,7 +3,7 @@ tap 'homebrew/cask'
 
 cask 'google-chrome'
 cask 'iterm2'
-cask 'spectacle'
+cask 'rectangle'
 cask 'firefox'
 cask 'slack'
 cask 'telegram-desktop'
