@@ -1,0 +1,6 @@
+killport() {
+  pids=$(portpid $1)
+  count=$(echo $pids | sed '/^$/d' | wc -l | xargs)
+  echo $pids | xargs kill -9
+  echo "Killed $count processes on port $1"
+}
